@@ -3,8 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:twitter_clone/themes.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _currIndex = 0;
+
+  void _nextIndex(int val) {
+    setState(() {
+      _currIndex = val;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,18 +40,18 @@ class HomePage extends StatelessWidget {
               children: <Widget>[
                 CircleAvatar(
                     backgroundImage: CachedNetworkImageProvider(
-                        "https://images.pexels.com/photos/5898485/pexels-photo-5898485.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"),
+                        "https://images.pexels.com/photos/2811087/pexels-photo-2811087.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"),
                     radius: 25),
                 ListTile(
                   dense: true,
                   contentPadding: EdgeInsets.zero,
                   title: Text(
-                    'Sam huang',
+                    'Carol hans',
                     softWrap: true,
                     style: TextStyle(fontSize: 20),
                   ),
                   subtitle: Text(
-                    "@sam",
+                    "@Carol_21",
                     style: TextStyle(color: Colors.blueGrey, fontSize: 16),
                   ),
                   trailing: IconButton(
@@ -56,7 +69,7 @@ class HomePage extends StatelessWidget {
                           style: TextStyle(color: Colors.grey, fontSize: 16),
                           children: [
                             TextSpan(
-                                text: '58 ',
+                                text: '239 ',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold)),
@@ -69,7 +82,7 @@ class HomePage extends StatelessWidget {
                           style: TextStyle(color: Colors.grey, fontSize: 16),
                           children: [
                             TextSpan(
-                                text: '18 ',
+                                text: '18k ',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold)),
@@ -158,6 +171,7 @@ class HomePage extends StatelessWidget {
           SliverAppBar(
             backgroundColor: Theme.of(context).backgroundColor,
             centerTitle: true,
+            elevation: 5,
             title: Icon(
               LineIcons.twitter,
               size: 36,
@@ -172,7 +186,8 @@ class HomePage extends StatelessWidget {
           showSelectedLabels: false,
           showUnselectedLabels: false,
           type: BottomNavigationBarType.fixed,
-          // backgroundColor: Colors.white70,
+          currentIndex: _currIndex,
+          onTap: _nextIndex,
           enableFeedback: true,
           elevation: 10,
           items: [
