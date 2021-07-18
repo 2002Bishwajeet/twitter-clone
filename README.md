@@ -1,6 +1,6 @@
-# twitter_clone
+# Twitter Clone
 
-A new Flutter project.
+This Repo Contains a functional Twitter Clone made using Flutter & Dart
 
 ## Getting Started
 
