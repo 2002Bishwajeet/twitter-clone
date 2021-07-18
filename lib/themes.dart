@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TwitterTheme {
   static ThemeData lightTheme(BuildContext context) => ThemeData(
         brightness: Brightness.light,
         backgroundColor: Colors.white,
+        fontFamily: GoogleFonts.ubuntu().fontFamily,
         appBarTheme: AppBarTheme(
             backgroundColor: Colors.white,
             iconTheme: IconThemeData(color: blueTColor)),

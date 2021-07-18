@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../pages/authenticationPage.dart';
 import 'package:twitter_clone/themes.dart';
 import '../pages/homepage.dart';
 
@@ -14,7 +15,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: TwitterTheme.lightTheme(context),
-      home: HomePage(),
+      home: AuthenticationPage(),
     );
   }
 }
