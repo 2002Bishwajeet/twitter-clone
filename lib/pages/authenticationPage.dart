@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:twitter_clone/pages/login_signup_screen.dart';
 import 'package:twitter_clone/themes.dart';
 
 class AuthenticationPage extends StatelessWidget {
@@ -11,7 +12,7 @@ class AuthenticationPage extends StatelessWidget {
       backgroundColor: TwitterTheme.blueTColor,
       body: SafeArea(
         child: Container(
-          margin: const EdgeInsets.all(32),
+          margin: const EdgeInsets.symmetric(horizontal: 32),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,28 +47,39 @@ class AuthenticationPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  MaterialButton(
-                    onPressed: () {},
-                    child: Text('Sign up'),
-                    color: Colors.white,
-                    textColor: TwitterTheme.blueTColor,
-                    textTheme: ButtonTextTheme.primary,
-                    minWidth: 150,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                  ),
-                  MaterialButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Log in',
-                      style: TextStyle(fontWeight: FontWeight.w600),
+                  Expanded(
+                    child: MaterialButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                LoginScreen(state: Status.signup)));
+                      },
+                      child: Text('Sign up'),
+                      color: Colors.white,
+                      textColor: TwitterTheme.blueTColor,
+                      textTheme: ButtonTextTheme.primary,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
                     ),
-                    textColor: Colors.white,
-                    textTheme: ButtonTextTheme.primary,
-                    minWidth: 150,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      side: BorderSide(color: Colors.white),
+                  ),
+                  SizedBox(width: 30),
+                  Expanded(
+                    child: MaterialButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                LoginScreen(state: Status.login)));
+                      },
+                      child: Text(
+                        'Log in',
+                        style: TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                      textColor: Colors.white,
+                      textTheme: ButtonTextTheme.primary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        side: BorderSide(color: Colors.white),
+                      ),
                     ),
                   ),
                 ],
