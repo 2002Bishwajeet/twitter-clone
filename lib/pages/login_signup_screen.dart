@@ -6,18 +6,36 @@ import 'package:line_icons/line_icons.dart';
 
 import 'package:twitter_clone/themes.dart';
 
-enum Status { signup, login, forgotPassword }
+enum Status { signup, login }
 
-class LoginScreen extends StatelessWidget {
+late Status type = Status.login;
+
+class LoginScreen extends StatefulWidget {
   static const routename = '/LoginScreen';
 
   LoginScreen({
     Key? key,
   }) : super(key: key);
 
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  void _switchType() {
+    if (type == Status.signup) {
+      setState(() {
+        type = Status.login;
+      });
+    } else {
+      setState(() {
+        type = Status.signup;
+      });
+    }
+    print(type);
+  }
+
   Widget build(BuildContext context) {
-    final state = ModalRoute.of(context)!.settings.arguments as Status;
-    print(state);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: TwitterTheme.blueTColor,
@@ -72,7 +90,7 @@ class LoginScreen extends StatelessWidget {
 
                       //  This widget will be hidden if the user is Logging in.
                       // This widget will be shown if the user is Signing Up.
-                      if (state == Status.signup)
+                      if (type == Status.signup)
                         Container(
                           margin: const EdgeInsets.symmetric(
                               horizontal: 24, vertical: 8),
@@ -112,7 +130,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if (state == Status.login)
+                      if (type == Status.login)
                         Center(
                           child: InkWell(
                             enableFeedback: true,
@@ -149,7 +167,7 @@ class LoginScreen extends StatelessWidget {
                           child: MaterialButton(
                             onPressed: () {},
                             child: Text(
-                              state == Status.login ? 'Log in' : 'Sign up',
+                              type == Status.login ? 'Log in' : 'Sign up',
                               style: TextStyle(fontWeight: FontWeight.w600),
                             ),
                             textColor: TwitterTheme.blueTColor,
@@ -167,20 +185,20 @@ class LoginScreen extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 24.0),
                           child: RichText(
                             text: TextSpan(
-                              text: state == Status.login
+                              text: type == Status.login
                                   ? 'New to Twitter? '
                                   : 'Already to Twitter? ',
                               style: TextStyle(color: Colors.black),
                               children: [
                                 TextSpan(
-                                    text: state == Status.login
+                                    text: type == Status.login
                                         ? 'Sign up now'
                                         : 'Log in',
                                     style: TextStyle(
                                         color: TwitterTheme.blueTColor),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
-                                        print('It Works');
+                                        _switchType();
                                       })
                               ],
                             ),
