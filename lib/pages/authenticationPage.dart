@@ -50,9 +50,8 @@ class AuthenticationPage extends StatelessWidget {
                   Expanded(
                     child: MaterialButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                LoginScreen(state: Status.signup)));
+                        Navigator.of(context).pushNamed(LoginScreen.routename,
+                            arguments: Status.signup);
                       },
                       child: Text('Sign up'),
                       color: Colors.white,
@@ -66,9 +65,8 @@ class AuthenticationPage extends StatelessWidget {
                   Expanded(
                     child: MaterialButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                LoginScreen(state: Status.login)));
+                        Navigator.of(context).pushNamed(LoginScreen.routename,
+                            arguments: Status.login);
                       },
                       child: Text(
                         'Log in',

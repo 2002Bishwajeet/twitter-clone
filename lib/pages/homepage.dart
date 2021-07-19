@@ -4,6 +4,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:twitter_clone/themes.dart';
 
 class HomePage extends StatefulWidget {
+  static const routename = '/homePage';
   const HomePage({Key? key}) : super(key: key);
 
   @override

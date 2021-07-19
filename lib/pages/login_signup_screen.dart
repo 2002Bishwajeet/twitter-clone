@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icon.dart';
@@ -10,10 +11,9 @@ enum Status { signup, login, forgotPassword }
 
 class LoginScreen extends StatefulWidget {
   static const routename = '/LoginScreen';
-  final Status state;
+
   LoginScreen({
     Key? key,
-    required this.state,
   }) : super(key: key);
 
   @override
@@ -23,6 +23,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
+    final state = ModalRoute.of(context)!.settings.arguments as Status;
+    print(state);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: TwitterTheme.blueTColor,
