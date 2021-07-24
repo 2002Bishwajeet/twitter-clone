@@ -17,7 +17,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: TwitterTheme.lightTheme(context),
-      home: AuthenticationPage(),
+      home: WelcomePage(),
       routes: {
         HomePage.routename: (ctx) => HomePage(),
         LoginScreen.routename: (ctx) => LoginScreen(),

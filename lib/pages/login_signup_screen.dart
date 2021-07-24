@@ -58,13 +58,19 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: CircleAvatar(
                               backgroundColor: TwitterTheme.blueTColor,
                               radius: 60,
-                              child: Icon(
-                                LineIcons.twitter,
-                                color: Colors.white,
-                                size: 80,
+                              child: Hero(
+                                tag: 'Twitter',
+                                child: Icon(
+                                  LineIcons.twitter,
+                                  color: Colors.white,
+                                  size: 80,
+                                ),
                               )),
                         ),
                       ),
+                      // if(1+1 == 2) ...[
+                      //  you can use like this but not curly braces one
+                      // ],
                       Spacer(flex: 2),
                       Container(
                         margin: const EdgeInsets.symmetric(
@@ -91,7 +97,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       //  This widget will be hidden if the user is Logging in.
                       // This widget will be shown if the user is Signing Up.
                       if (type == Status.signup)
-                        Container(
+                        AnimatedContainer(
+                          duration: Duration(milliseconds: 600),
                           margin: const EdgeInsets.symmetric(
                               horizontal: 24, vertical: 8),
                           padding: const EdgeInsets.symmetric(

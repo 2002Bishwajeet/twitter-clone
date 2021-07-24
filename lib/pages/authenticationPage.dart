@@ -3,8 +3,8 @@ import 'package:line_icons/line_icons.dart';
 import 'package:twitter_clone/pages/login_signup_screen.dart';
 import 'package:twitter_clone/themes.dart';
 
-class AuthenticationPage extends StatelessWidget {
-  const AuthenticationPage({Key? key}) : super(key: key);
+class WelcomePage extends StatelessWidget {
+  const WelcomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +19,13 @@ class AuthenticationPage extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 160, 0, 32),
-                child: Icon(
-                  LineIcons.twitter,
-                  color: Colors.white,
-                  size: 40,
+                child: Hero(
+                  tag: 'Twitter',
+                  child: Icon(
+                    LineIcons.twitter,
+                    color: Colors.white,
+                    size: 40,
+                  ),
                 ),
               ),
               Padding(
