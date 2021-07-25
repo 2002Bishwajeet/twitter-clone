@@ -22,6 +22,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey();
+  final _email = TextEditingController();
+  final _password = TextEditingController();
+
   void _switchType() {
     if (type == Status.signup) {
       setState(() {
@@ -41,6 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: TwitterTheme.blueTColor,
       body: SafeArea(
         child: Form(
+          key: _formKey,
           child: Column(
             children: [
               Expanded(
@@ -81,12 +86,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(25)),
                         child: TextFormField(
+                          controller: _email,
                           autocorrect: true,
                           enableSuggestions: true,
-                          keyboardType: TextInputType.text,
+                          keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
-                            hintText: 'Username',
-                            icon: Icon(Icons.person,
+                            hintText: 'Email address',
+                            icon: Icon(Icons.email_outlined,
                                 color: TwitterTheme.blueTColor, size: 24),
                             alignLabelWithHint: true,
                             border: InputBorder.none,
@@ -94,8 +100,27 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
 
-                      //  This widget will be hidden if the user is Logging in.
-                      // This widget will be shown if the user is Signing Up.
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 4),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(25)),
+                        child: TextFormField(
+                          controller: _password,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            hintText: 'Password',
+                            icon: Icon(CupertinoIcons.lock_circle,
+                                color: TwitterTheme.blueTColor, size: 24),
+                            alignLabelWithHint: true,
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+
                       if (type == Status.signup)
                         AnimatedContainer(
                           duration: Duration(milliseconds: 600),
@@ -109,8 +134,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: TextFormField(
                             obscureText: true,
                             decoration: InputDecoration(
-                              hintText: 'Email address',
-                              icon: Icon(Icons.email_outlined,
+                              hintText: 'Confirm password',
+                              icon: Icon(CupertinoIcons.lock_circle,
                                   color: TwitterTheme.blueTColor, size: 24),
                               alignLabelWithHint: true,
                               border: InputBorder.none,
@@ -118,25 +143,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
 
-                      Container(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 8),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 4),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(25)),
-                        child: TextFormField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            hintText: 'Password',
-                            icon: Icon(CupertinoIcons.lock_circle,
-                                color: TwitterTheme.blueTColor, size: 24),
-                            alignLabelWithHint: true,
-                            border: InputBorder.none,
-                          ),
-                        ),
-                      ),
                       if (type == Status.login)
                         Center(
                           child: InkWell(
