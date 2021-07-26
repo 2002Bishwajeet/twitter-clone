@@ -5,7 +5,8 @@ import 'package:twitter_clone/pages/errorScreen.dart';
 import 'package:twitter_clone/pages/homepage.dart';
 import 'package:twitter_clone/pages/loadingScreen.dart';
 import 'package:twitter_clone/pages/login_signup_screen.dart';
-import '../pages/authenticationPage.dart';
+import 'package:twitter_clone/providers/auth_provider.dart';
+import 'pages/WelcomePage.dart';
 import 'package:twitter_clone/themes.dart';
 
 void main() {
@@ -28,8 +29,7 @@ class MainApp extends ConsumerWidget {
       theme: TwitterTheme.lightTheme(context),
       home: initialize.when(
           data: (data) {
-            print(data);
-            return WelcomePage();
+            return AuthChecker();
           },
           loading: () => LoadingScreen(),
           error: (e, stackTrace) => ErrorScreen()),
@@ -38,5 +38,23 @@ class MainApp extends ConsumerWidget {
         LoginScreen.routename: (ctx) => LoginScreen(),
       },
     );
+  }
+}
+
+class AuthChecker extends ConsumerWidget {
+  const AuthChecker({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, ScopedReader watch) {
+    //  this variable is watching the state ki abhi kaha pe hai hum (logged In or not)
+    final _authState = watch(authStateProvider);
+    return _authState.when(
+        data: (data) {
+          if (data != null) return HomePage();
+
+          return WelcomePage();
+        },
+        loading: () => LoadingScreen(),
+        error: (e, trace) => ErrorScreen());
   }
 }

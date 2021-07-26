@@ -9,6 +9,7 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: TwitterTheme.blueTColor,
       body: SafeArea(
         child: Container(
@@ -53,7 +54,8 @@ class WelcomePage extends StatelessWidget {
                   Expanded(
                     child: MaterialButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed(LoginScreen.routename);
+                        Navigator.of(context)
+                            .pushReplacementNamed(LoginScreen.routename);
                         type = Status.signup;
                       },
                       child: Text('Sign up'),
@@ -68,7 +70,8 @@ class WelcomePage extends StatelessWidget {
                   Expanded(
                     child: MaterialButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed(LoginScreen.routename);
+                        Navigator.of(context)
+                            .pushReplacementNamed(LoginScreen.routename);
                         type = Status.login;
                       },
                       child: Text(
