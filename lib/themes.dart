@@ -18,4 +18,13 @@ class TwitterTheme {
   static Color lightTgrey = HexColor("#AAB8C2");
   static Color extraLightTgrey = HexColor("#E1E8ED");
   static Color extraextraLightTgrey = HexColor("#F5F8FA");
+
+  static ThemeData darkTheme(BuildContext context) => ThemeData(
+        brightness: Brightness.dark,
+        backgroundColor: Colors.black87,
+        fontFamily: GoogleFonts.ubuntu().fontFamily,
+        appBarTheme: AppBarTheme(
+            backgroundColor: Colors.black87,
+            iconTheme: IconThemeData(color: blueTColor)),
+      );
 }

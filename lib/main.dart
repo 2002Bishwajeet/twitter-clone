@@ -26,7 +26,9 @@ class MainApp extends ConsumerWidget {
     final initialize = watch(initializeFirebase);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.light,
       theme: TwitterTheme.lightTheme(context),
+      darkTheme: TwitterTheme.darkTheme(context),
       home: initialize.when(
           data: (data) {
             return AuthChecker();
