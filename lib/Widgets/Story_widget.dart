@@ -27,7 +27,7 @@ class StoryWidget extends StatelessWidget {
               )),
           if (index == 0)
             Positioned(
-              bottom: 4,
+              bottom: 2,
               right: 0,
               child: CircleAvatar(
                 backgroundColor: TwitterTheme.blueTColor,
