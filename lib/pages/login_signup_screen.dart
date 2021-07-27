@@ -69,6 +69,37 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SafeArea(
         child: Consumer(builder: (context, watch, _) {
           final _auth = watch(authServicesProvider);
+
+          Future<void> _onPressedFunction() async {
+            if (!_formKey.currentState!.validate()) {
+              return;
+            }
+            if (type == Status.login) {
+              await _auth.signInWithEmailAndPassword(
+                  _email.text, _password.text);
+              loading();
+              _auth.authStateChange.listen((event) {
+                if (event == null) {
+                  print(event);
+                } else {
+                  Navigator.of(context)
+                      .pushReplacementNamed(HomePage.routename);
+                }
+              });
+            } else {
+              await _auth.signUpWithEmailAndPassword(_email.text, _email.text);
+              loading();
+              _auth.authStateChange.listen((event) {
+                if (event == null) {
+                  print(event);
+                } else {
+                  Navigator.of(context)
+                      .pushReplacementNamed(HomePage.routename);
+                }
+              });
+            }
+          }
+
           return Form(
             key: _formKey,
             child: Column(
@@ -226,39 +257,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: _isLoading
                                 ? Center(child: CircularProgressIndicator())
                                 : MaterialButton(
-                                    onPressed: () async {
-                                      //  TODO: Seperate The Logic from Widgets
-                                      if (!_formKey.currentState!.validate()) {
-                                        return;
-                                      }
-                                      if (type == Status.login) {
-                                        await _auth.signInWithEmailAndPassword(
-                                            _email.text, _password.text);
-                                        loading();
-                                        _auth.authStateChange.listen((event) {
-                                          if (event == null) {
-                                            print(event);
-                                          } else {
-                                            Navigator.of(context)
-                                                .pushReplacementNamed(
-                                                    HomePage.routename);
-                                          }
-                                        });
-                                      } else {
-                                        await _auth.signUpWithEmailAndPassword(
-                                            _email.text, _email.text);
-                                        loading();
-                                        _auth.authStateChange.listen((event) {
-                                          if (event == null) {
-                                            print(event);
-                                          } else {
-                                            Navigator.of(context)
-                                                .pushReplacementNamed(
-                                                    HomePage.routename);
-                                          }
-                                        });
-                                      }
-                                    },
+                                    onPressed: _onPressedFunction,
                                     child: Text(
                                       type == Status.login
                                           ? 'Log in'
