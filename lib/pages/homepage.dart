@@ -38,23 +38,28 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Theme.of(context).backgroundColor,
       drawer: DrawerWidget(),
       body: _screens[_currIndex],
-      bottomNavigationBar: Container(
-        height: devicesize.height * 0.09,
-        child: BottomNavigationBar(
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          selectedItemColor: TwitterTheme.blueTColor,
-          type: BottomNavigationBarType.fixed,
-          currentIndex: _currIndex,
-          onTap: _nextIndex,
-          enableFeedback: true,
-          elevation: 10,
-          items: [
-            BottomNavigationBarItem(icon: Icon(LineIcons.home), label: ""),
-            BottomNavigationBarItem(icon: Icon(LineIcons.search), label: ""),
-            BottomNavigationBarItem(icon: Icon(LineIcons.bell), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.mail_outline), label: ""),
-          ],
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(25), topRight: Radius.circular(25)),
+        child: SizedBox(
+          height: devicesize.height * 0.09,
+          child: BottomNavigationBar(
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            selectedItemColor: TwitterTheme.blueTColor,
+            type: BottomNavigationBarType.fixed,
+            currentIndex: _currIndex,
+            onTap: _nextIndex,
+            enableFeedback: true,
+            elevation: 10,
+            items: [
+              BottomNavigationBarItem(icon: Icon(LineIcons.home), label: ""),
+              BottomNavigationBarItem(icon: Icon(LineIcons.search), label: ""),
+              BottomNavigationBarItem(icon: Icon(LineIcons.bell), label: ""),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.mail_outline), label: ""),
+            ],
+          ),
         ),
       ),
     );
