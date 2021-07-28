@@ -7,6 +7,9 @@ class TwitterTheme {
         brightness: Brightness.light,
         backgroundColor: Colors.white,
         fontFamily: GoogleFonts.ubuntu().fontFamily,
+        textTheme: TextTheme(
+            headline6:
+                TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
         appBarTheme: AppBarTheme(
             backgroundColor: Colors.white,
             iconTheme: IconThemeData(color: blueTColor)),
@@ -16,6 +19,11 @@ class TwitterTheme {
         brightness: Brightness.dark,
         backgroundColor: Colors.black87,
         fontFamily: GoogleFonts.ubuntu().fontFamily,
+        textTheme: TextTheme(
+          headline6:
+              TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          subtitle1: TextStyle(color: Colors.grey),
+        ),
         appBarTheme: AppBarTheme(
             backgroundColor: Colors.black87,
             iconTheme: IconThemeData(color: blueTColor)),

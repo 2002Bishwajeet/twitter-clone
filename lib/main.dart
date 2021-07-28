@@ -26,7 +26,7 @@ class MainApp extends ConsumerWidget {
     final initialize = watch(initializeFirebase);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.dark,
       theme: TwitterTheme.lightTheme(context),
       darkTheme: TwitterTheme.darkTheme(context),
       home: initialize.when(

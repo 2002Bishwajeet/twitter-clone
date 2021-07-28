@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:twitter_clone/Widgets/Story_widget.dart';
+import 'package:twitter_clone/Widgets/TweetWidget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -13,7 +14,8 @@ class HomeScreen extends StatelessWidget {
         SliverAppBar(
           backgroundColor: Theme.of(context).backgroundColor,
           centerTitle: true,
-          elevation: 15,
+          elevation: 1,
+          floating: true,
           title: Icon(
             LineIcons.twitter,
             size: 36,
@@ -31,7 +33,11 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8),
             ),
           ),
-        )
+        ),
+        SliverList(
+            delegate: SliverChildBuilderDelegate(
+                (context, index) => TweetWidget(),
+                childCount: 7))
       ],
     );
   }
