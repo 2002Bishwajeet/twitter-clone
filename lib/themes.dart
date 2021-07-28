@@ -8,8 +8,10 @@ class TwitterTheme {
         backgroundColor: Colors.white,
         fontFamily: GoogleFonts.ubuntu().fontFamily,
         textTheme: TextTheme(
-            headline6:
-                TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+          headline6: TextStyle(color: blackTColor, fontWeight: FontWeight.bold),
+          subtitle1: TextStyle(color: Colors.grey),
+          headline4: TextStyle(color: blackTColor, fontWeight: FontWeight.bold),
+        ),
         appBarTheme: AppBarTheme(
             backgroundColor: Colors.white,
             iconTheme: IconThemeData(color: blueTColor)),
@@ -23,6 +25,8 @@ class TwitterTheme {
           headline6:
               TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           subtitle1: TextStyle(color: Colors.grey),
+          headline4:
+              TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         appBarTheme: AppBarTheme(
             backgroundColor: Colors.black87,

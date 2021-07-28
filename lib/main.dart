@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:twitter_clone/pages/CreateProfilepage.dart';
 import 'package:twitter_clone/Screens/errorScreen.dart';
 import 'package:twitter_clone/pages/homepage.dart';
 import 'package:twitter_clone/Screens/loadingScreen.dart';
@@ -26,7 +27,7 @@ class MainApp extends ConsumerWidget {
     final initialize = watch(initializeFirebase);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.system,
       theme: TwitterTheme.lightTheme(context),
       darkTheme: TwitterTheme.darkTheme(context),
       home: initialize.when(
