@@ -79,7 +79,12 @@ class IconNumberedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        InkWell(onTap: () {}, child: Icon(ico)),
+        InkWell(
+            onTap: () {},
+            child: Icon(
+              ico,
+              color: Colors.grey,
+            )),
         SizedBox(width: 10),
         Text(number.toString())
       ],
