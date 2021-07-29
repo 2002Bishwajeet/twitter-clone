@@ -39,6 +39,7 @@ class MainApp extends ConsumerWidget {
       routes: {
         HomePage.routename: (ctx) => HomePage(),
         LoginScreen.routename: (ctx) => LoginScreen(),
+        CreateProfilePage.routename: (ctx) => CreateProfilePage(),
       },
     );
   }

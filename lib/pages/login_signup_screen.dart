@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:twitter_clone/pages/CreateProfilepage.dart';
 import 'package:twitter_clone/pages/homepage.dart';
 import 'package:twitter_clone/providers/auth_provider.dart';
 
@@ -94,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   print(event);
                 } else {
                   Navigator.of(context)
-                      .pushReplacementNamed(HomePage.routename);
+                      .pushReplacementNamed(CreateProfilePage.routename);
                 }
               });
             }
@@ -149,6 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             onSaved: (value) {},
                             decoration: InputDecoration(
                               hintText: 'Email address',
+                              hintStyle: TextStyle(color: Colors.black54),
                               icon: Icon(Icons.email_outlined,
                                   color: TwitterTheme.blueTColor, size: 24),
                               alignLabelWithHint: true,
@@ -182,6 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                             decoration: InputDecoration(
                               hintText: 'Password',
+                              hintStyle: TextStyle(color: Colors.black54),
                               icon: Icon(CupertinoIcons.lock_circle,
                                   color: TwitterTheme.blueTColor, size: 24),
                               alignLabelWithHint: true,
@@ -204,6 +207,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               obscureText: true,
                               decoration: InputDecoration(
                                 hintText: 'Confirm password',
+                                hintStyle: TextStyle(color: Colors.black54),
                                 icon: Icon(CupertinoIcons.lock_circle,
                                     color: TwitterTheme.blueTColor, size: 24),
                                 alignLabelWithHint: true,
