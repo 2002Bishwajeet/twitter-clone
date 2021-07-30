@@ -4,12 +4,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_auth/firebase_auth.dart';
 
-class User {
+class CreateUser {
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
   final String id = FirebaseAuth.instance.currentUser!.uid;
 
-  User(this.storage);
+  CreateUser(this.storage);
 
   CollectionReference users = FirebaseFirestore.instance.collection('users');
   Future<String> addProfilePicture(String filePath, String name) async {

@@ -12,4 +12,4 @@ final firestoreProvider =
     Provider<FirebaseFirestore>((ref) => FirebaseFirestore.instance);
 
 final userProvider =
-    Provider<User>((ref) => User(ref.read(firebaseStorageProvider)));
+    Provider<CreateUser>((ref) => CreateUser(ref.read(firebaseStorageProvider)));
