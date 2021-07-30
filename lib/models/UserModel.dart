@@ -2,44 +2,38 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:firebase_auth/firebase_auth.dart';
 
 class User {
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
+  final String id = FirebaseAuth.instance.currentUser!.uid;
 
   User(this.storage);
 
   CollectionReference users = FirebaseFirestore.instance.collection('users');
-  late String url;
-  Future<void> addProfilePicture(String filePath, String name) async {
+  Future<String> addProfilePicture(String filePath, String name) async {
     File file = File(filePath);
 
     try {
-      // storage.ref('userProfilePictures/$name').putFile(file);
-
-      firebase_storage.Reference ref =
-          storage.ref().child("DP" + DateTime.now().toString());
-      firebase_storage.UploadTask uploadTask = ref.putFile(file);
-      uploadTask.whenComplete(() async {
-        url = await ref.getDownloadURL();
-        print(url);
-      });
+      await storage.ref('userProfilePictures/$name').putFile(file);
     } on firebase_storage.FirebaseException catch (e) {
-      print('Error:  $e.message');
-    } finally {
-      file.delete();
+      print(e);
     }
+    // print(await ref.getDownloadURL());
+    return await storage.ref('userProfilePictures/$name').getDownloadURL();
   }
 
-  Future<void> addUser(String name, String twitterHandle) async {
+  Future<void> addUser(String name, String twitterHandle, String url) async {
     try {
-      users.add({
+      users.doc(id).set({
         'name': name,
         'twitterHandle': twitterHandle,
         'followers': 0,
         'following': 0,
         'profilePicure': url,
       });
+      print(url);
     } catch (e) {
       print(e);
     }

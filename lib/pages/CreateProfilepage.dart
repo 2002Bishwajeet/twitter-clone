@@ -169,9 +169,13 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                       if (!_formKey.currentState!.validate()) {
                         return;
                       }
-                      await _createUser.addProfilePicture(
-                          _image!.path, _image!.name);
-                      await _createUser.addUser(_name.text, _handle.text);
+                      _image != null
+                          ? await _createUser
+                              .addProfilePicture(_image!.path, _image!.name)
+                              .then((url) => _createUser.addUser(
+                                  _name.text, _handle.text, url))
+                          : _createUser.addUser(_name.text, _handle.text,
+                              'assets/images/maleavatar.png');
 
                       await Navigator.of(context)
                           .pushReplacementNamed(HomePage.routename);
