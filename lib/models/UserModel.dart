@@ -33,7 +33,7 @@ class CreateUser {
         'following': 0,
         'profilePicure': url,
       });
-      print(url);
+      // print(url);
     } catch (e) {
       print(e);
     }

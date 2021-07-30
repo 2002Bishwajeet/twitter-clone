@@ -35,6 +35,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
     print(_image!.path);
   }
 
+  bool _isloading = false;
   @override
   void dispose() {
     _name.dispose();
@@ -160,40 +161,43 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                   ),
                 ),
                 Spacer(),
-                Container(
-                  padding: const EdgeInsets.only(top: 48.0),
-                  margin: const EdgeInsets.symmetric(horizontal: 16),
-                  width: double.infinity,
-                  child: MaterialButton(
-                    onPressed: () async {
-                      if (!_formKey.currentState!.validate()) {
-                        return;
-                      }
-                      _image != null
-                          ? await _createUser
-                              .addProfilePicture(_image!.path, _image!.name)
-                              .then((url) => _createUser.addUser(
-                                  _name.text, _handle.text, url))
-                          : _createUser.addUser(_name.text, _handle.text,
-                              'assets/images/maleavatar.png');
+                _isloading
+                    ? Center(child: CircularProgressIndicator())
+                    : Container(
+                        padding: const EdgeInsets.only(top: 48.0),
+                        margin: const EdgeInsets.symmetric(horizontal: 16),
+                        width: double.infinity,
+                        child: MaterialButton(
+                          onPressed: () async {
+                            if (!_formKey.currentState!.validate()) {
+                              return;
+                            }
+                            _image != null
+                                ? await _createUser
+                                    .addProfilePicture(
+                                        _image!.path, _image!.name)
+                                    .then((url) => _createUser.addUser(
+                                        _name.text, _handle.text, url))
+                                : _createUser.addUser(_name.text, _handle.text,
+                                    'assets/images/maleavatar.png');
 
-                      await Navigator.of(context)
-                          .pushReplacementNamed(HomePage.routename);
-                    },
-                    child: Text(
-                      'Create User',
-                      style: TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                    textColor: TwitterTheme.blueTColor,
-                    textTheme: ButtonTextTheme.primary,
-                    minWidth: 100,
-                    padding: const EdgeInsets.all(18),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25),
-                      side: BorderSide(color: TwitterTheme.blueTColor),
-                    ),
-                  ),
-                ),
+                            await Navigator.of(context)
+                                .pushReplacementNamed(HomePage.routename);
+                          },
+                          child: Text(
+                            'Create User',
+                            style: TextStyle(fontWeight: FontWeight.w600),
+                          ),
+                          textColor: TwitterTheme.blueTColor,
+                          textTheme: ButtonTextTheme.primary,
+                          minWidth: 100,
+                          padding: const EdgeInsets.all(18),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                            side: BorderSide(color: TwitterTheme.blueTColor),
+                          ),
+                        ),
+                      ),
                 Spacer(
                   flex: 3,
                 ),
