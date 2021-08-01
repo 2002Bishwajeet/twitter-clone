@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+
 import 'package:twitter_clone/providers/auth_provider.dart';
+import 'package:twitter_clone/providers/user_provider.dart';
 
 import '../themes.dart';
 
@@ -13,6 +16,9 @@ class DrawerWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final _logOut = watch(authServicesProvider);
+    final _profileData = watch(getUserProfileDataProvider);
+
+    // print('${_profileData.data} from Drawer Widget');
     return Drawer(
       child: SafeArea(
         child: Container(
@@ -28,19 +34,37 @@ class DrawerWidget extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               CircleAvatar(
-                  backgroundImage: CachedNetworkImageProvider(
-                      "https://images.pexels.com/photos/2811087/pexels-photo-2811087.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"),
+                  backgroundImage: CachedNetworkImageProvider(_profileData.when(
+                      data: (data) => data.avatarUrl,
+                      loading: () =>
+                          'https://images.pexels.com/photos/8514763/pexels-photo-8514763.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                      error: (e, trace) {
+                        print('$e from avatarUrl');
+                        return 'https://images.pexels.com/photos/8594402/pexels-photo-8594402.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
+                      })),
                   radius: 25),
               ListTile(
                 dense: true,
                 contentPadding: EdgeInsets.zero,
                 title: Text(
-                  'Carol hans',
+                  _profileData.when(
+                      data: (data) => data.name,
+                      loading: () => '',
+                      error: (e, trace) {
+                        print('$e from name');
+                        return '';
+                      }),
                   softWrap: true,
                   style: TextStyle(fontSize: 20),
                 ),
                 subtitle: Text(
-                  "@Carol_21",
+                  _profileData.when(
+                      data: (data) => data.handle,
+                      loading: () => '',
+                      error: (e, trace) {
+                        print('$e from handle');
+                        return '';
+                      }),
                   style: TextStyle(color: Colors.grey, fontSize: 16),
                 ),
                 trailing: IconButton(
@@ -58,7 +82,13 @@ class DrawerWidget extends ConsumerWidget {
                         style: TextStyle(color: Colors.grey, fontSize: 16),
                         children: [
                           TextSpan(
-                              text: '239 ',
+                              text: _profileData.when(
+                                  data: (data) => data.following.toString(),
+                                  loading: () => '',
+                                  error: (e, trace) {
+                                    print('$e from following');
+                                    return '';
+                                  }),
                               style: TextStyle(
                                   color: Theme.of(context).brightness ==
                                           Brightness.dark
@@ -74,7 +104,13 @@ class DrawerWidget extends ConsumerWidget {
                         style: TextStyle(color: Colors.grey, fontSize: 16),
                         children: [
                           TextSpan(
-                              text: '18k ',
+                              text: _profileData.when(
+                                  data: (data) => data.followers.toString(),
+                                  loading: () => '',
+                                  error: (e, trace) {
+                                    print('$e from followers');
+                                    return '';
+                                  }),
                               style: TextStyle(
                                   color: Theme.of(context).brightness ==
                                           Brightness.dark

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:twitter_clone/pages/homepage.dart';
-import 'package:twitter_clone/providers/Create_user_provider.dart';
+import 'package:twitter_clone/providers/user_provider.dart';
 import 'package:twitter_clone/themes.dart';
 import 'package:image_picker/image_picker.dart';
 
