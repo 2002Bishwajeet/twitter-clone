@@ -15,7 +15,7 @@ class CreateTweetPage extends StatefulWidget {
 
 class _CreateTweetPageState extends State<CreateTweetPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
-  bool _isEnabled = false;
+
   final _tweet = TextEditingController();
 
   @override
@@ -68,9 +68,8 @@ class _CreateTweetPageState extends State<CreateTweetPage> {
                     title: TextFormField(
                       controller: _tweet,
                       onChanged: (val) {
-                        setState(() {
-                          _isEnabled = true;
-                        });
+                        // TODO: Avoid Calling the empty setState
+                        setState(() {});
                       },
                       decoration: InputDecoration(
                         hintText: 'What\'s happening? ',
