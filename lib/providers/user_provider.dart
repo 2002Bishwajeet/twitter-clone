@@ -17,7 +17,7 @@ final userProvider = Provider<CreateUser>(
     (ref) => CreateUser(ref.read(firebaseStorageProvider)));
 
 final getUserProfileDataProvider = FutureProvider<UserProfile>((ref) {
-  return GetUserProfileData(ref.read(firestoreProvider),
-          ref.read(fireBaseAuthProvider).currentUser!.uid)
+  return GetUserProfileData(ref.watch(firestoreProvider),
+          ref.watch(fireBaseAuthProvider).currentUser!.uid)
       .getprofileData();
 });

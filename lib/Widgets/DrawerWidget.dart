@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:twitter_clone/models/getUserProfile.dart';
 
 import 'package:twitter_clone/providers/auth_provider.dart';
 import 'package:twitter_clone/providers/user_provider.dart';
@@ -14,11 +14,11 @@ class DrawerWidget extends ConsumerWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
+  Widget build(BuildContext context, watch) {
     final _logOut = watch(authServicesProvider);
     final _profileData = watch(getUserProfileDataProvider);
 
-    // print('${_profileData.data} from Drawer Widget');
+    print('${_profileData.data} from Drawer Widget');
     return Drawer(
       child: SafeArea(
         child: Container(
@@ -33,97 +33,311 @@ class DrawerWidget extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              CircleAvatar(
-                  backgroundImage: CachedNetworkImageProvider(_profileData.when(
-                      data: (data) => data.avatarUrl,
-                      loading: () =>
-                          'https://images.pexels.com/photos/8514763/pexels-photo-8514763.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-                      error: (e, trace) {
-                        print('$e from avatarUrl');
-                        return 'https://images.pexels.com/photos/8594402/pexels-photo-8594402.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
-                      })),
-                  radius: 25),
-              ListTile(
-                dense: true,
-                contentPadding: EdgeInsets.zero,
-                title: Text(
-                  _profileData.when(
-                      data: (data) => data.name,
-                      loading: () => '',
-                      error: (e, trace) {
-                        print('$e from name');
-                        return '';
-                      }),
-                  softWrap: true,
-                  style: TextStyle(fontSize: 20),
-                ),
-                subtitle: Text(
-                  _profileData.when(
-                      data: (data) => data.handle,
-                      loading: () => '',
-                      error: (e, trace) {
-                        print('$e from handle');
-                        return '';
-                      }),
-                  style: TextStyle(color: Colors.grey, fontSize: 16),
-                ),
-                trailing: IconButton(
-                    splashRadius: 15,
-                    onPressed: () {},
-                    icon: Icon(Icons.expand_more)),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  RichText(
-                    text: TextSpan(
-                        style: TextStyle(color: Colors.grey, fontSize: 16),
+              _profileData.when(
+                  data: (data) => Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TextSpan(
-                              text: _profileData.when(
-                                  data: (data) => data.following.toString(),
-                                  loading: () => '',
-                                  error: (e, trace) {
-                                    print('$e from following');
-                                    return '';
-                                  }),
-                              style: TextStyle(
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? Colors.white
-                                      : Colors.black,
-                                  fontWeight: FontWeight.bold)),
-                          TextSpan(text: 'Following ')
-                        ]),
-                  ),
-                  SizedBox(width: 10),
-                  RichText(
-                    text: TextSpan(
-                        style: TextStyle(color: Colors.grey, fontSize: 16),
+                          CircleAvatar(
+                              backgroundImage: CachedNetworkImageProvider(
+                                _profileData.data!.value.avatarUrl,
+                              ),
+                              radius: 25),
+                          ListTile(
+                            dense: true,
+                            contentPadding: EdgeInsets.zero,
+                            title: Text(
+                              _profileData.data!.value.name,
+                              softWrap: true,
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            subtitle: Text(
+                              _profileData.data!.value.handle,
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 16),
+                            ),
+                            trailing: IconButton(
+                                splashRadius: 15,
+                                onPressed: () {},
+                                icon: Icon(Icons.expand_more)),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              RichText(
+                                text: TextSpan(
+                                    style: TextStyle(
+                                        color: Colors.grey, fontSize: 16),
+                                    children: [
+                                      TextSpan(
+                                          text: _profileData
+                                              .data!.value.following
+                                              .toString(),
+                                          style: TextStyle(
+                                              color: Theme.of(context)
+                                                          .brightness ==
+                                                      Brightness.dark
+                                                  ? Colors.white
+                                                  : Colors.black,
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(text: 'Following ')
+                                    ]),
+                              ),
+                              SizedBox(width: 10),
+                              RichText(
+                                text: TextSpan(
+                                    style: TextStyle(
+                                        color: Colors.grey, fontSize: 16),
+                                    children: [
+                                      TextSpan(
+                                          text: _profileData
+                                              .data!.value.followers
+                                              .toString(),
+                                          style: TextStyle(
+                                              color: Theme.of(context)
+                                                          .brightness ==
+                                                      Brightness.dark
+                                                  ? Colors.white
+                                                  : Colors.black,
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(text: 'Followers ')
+                                    ]),
+                              ),
+                            ],
+                          ),
+                          Divider(),
+                        ],
+                      ),
+                  loading: () => Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TextSpan(
-                              text: _profileData.when(
-                                  data: (data) => data.followers.toString(),
-                                  loading: () => '',
-                                  error: (e, trace) {
-                                    print('$e from followers');
-                                    return '';
-                                  }),
-                              style: TextStyle(
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? Colors.white
-                                      : Colors.black,
-                                  fontWeight: FontWeight.bold)),
-                          TextSpan(text: 'Followers ')
-                        ]),
-                  ),
-                ],
-              ),
-              Divider(),
-              // SizedBox(height: 20),
+                          CircleAvatar(
+                              backgroundImage: CachedNetworkImageProvider(
+                                'https://images.pexels.com/photos/8514763/pexels-photo-8514763.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                              ),
+                              radius: 25),
+                          ListTile(
+                            dense: true,
+                            contentPadding: EdgeInsets.zero,
+                            title: Text(
+                              'Sophia',
+                              softWrap: true,
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            subtitle: Text(
+                              '@sophia',
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 16),
+                            ),
+                            trailing: IconButton(
+                                splashRadius: 15,
+                                onPressed: () {},
+                                icon: Icon(Icons.expand_more)),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              RichText(
+                                text: TextSpan(
+                                    style: TextStyle(
+                                        color: Colors.grey, fontSize: 16),
+                                    children: [
+                                      TextSpan(
+                                          text: '100 ',
+                                          style: TextStyle(
+                                              color: Theme.of(context)
+                                                          .brightness ==
+                                                      Brightness.dark
+                                                  ? Colors.white
+                                                  : Colors.black,
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(text: 'Following ')
+                                    ]),
+                              ),
+                              SizedBox(width: 10),
+                              RichText(
+                                text: TextSpan(
+                                    style: TextStyle(
+                                        color: Colors.grey, fontSize: 16),
+                                    children: [
+                                      TextSpan(
+                                          text: '1k ',
+                                          style: TextStyle(
+                                              color: Theme.of(context)
+                                                          .brightness ==
+                                                      Brightness.dark
+                                                  ? Colors.white
+                                                  : Colors.black,
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(text: 'Followers ')
+                                    ]),
+                              ),
+                            ],
+                          ),
+                          Divider(),
+                        ],
+                      ),
+                  error: (e, s) => Text(e.toString())),
+              // FutureBuilder(
+              //   future: GetUserProfileData(watch(firestoreProvider),
+              //           watch(fireBaseAuthProvider).currentUser!.uid)
+              //       .getprofileData(),
+              //   builder: (BuildContext context, snapshot) {
+              //     if (snapshot.hasError) {
+              //       return Text(snapshot.toString());
+              //     }
+              //     if (snapshot.connectionState == ConnectionState.done) {
+              //       UserProfile _profile = snapshot.data as UserProfile;
+              //       return Column(
+              //         mainAxisAlignment: MainAxisAlignment.start,
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: [
+              //           CircleAvatar(
+              //               backgroundImage: CachedNetworkImageProvider(
+              //                 _profile.avatarUrl,
+              //               ),
+              //               radius: 25),
+              //           ListTile(
+              //             dense: true,
+              //             contentPadding: EdgeInsets.zero,
+              //             title: Text(
+              //               _profile.name,
+              //               softWrap: true,
+              //               style: TextStyle(fontSize: 20),
+              //             ),
+              //             subtitle: Text(
+              //               _profile.handle,
+              //               style: TextStyle(color: Colors.grey, fontSize: 16),
+              //             ),
+              //             trailing: IconButton(
+              //                 splashRadius: 15,
+              //                 onPressed: () {},
+              //                 icon: Icon(Icons.expand_more)),
+              //           ),
+              //           Row(
+              //             mainAxisSize: MainAxisSize.min,
+              //             mainAxisAlignment: MainAxisAlignment.start,
+              //             crossAxisAlignment: CrossAxisAlignment.start,
+              //             children: [
+              //               RichText(
+              //                 text: TextSpan(
+              //                     style: TextStyle(
+              //                         color: Colors.grey, fontSize: 16),
+              //                     children: [
+              //                       TextSpan(
+              //                           text: _profile.following.toString(),
+              //                           style: TextStyle(
+              //                               color:
+              //                                   Theme.of(context).brightness ==
+              //                                           Brightness.dark
+              //                                       ? Colors.white
+              //                                       : Colors.black,
+              //                               fontWeight: FontWeight.bold)),
+              //                       TextSpan(text: 'Following ')
+              //                     ]),
+              //               ),
+              //               SizedBox(width: 10),
+              //               RichText(
+              //                 text: TextSpan(
+              //                     style: TextStyle(
+              //                         color: Colors.grey, fontSize: 16),
+              //                     children: [
+              //                       TextSpan(
+              //                           text: _profile.followers.toString(),
+              //                           style: TextStyle(
+              //                               color:
+              //                                   Theme.of(context).brightness ==
+              //                                           Brightness.dark
+              //                                       ? Colors.white
+              //                                       : Colors.black,
+              //                               fontWeight: FontWeight.bold)),
+              //                       TextSpan(text: 'Followers ')
+              //                     ]),
+              //               ),
+              //             ],
+              //           ),
+              //           Divider(),
+              //         ],
+              //       );
+              //     }
+              //     return Column(
+              //       mainAxisAlignment: MainAxisAlignment.start,
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       children: [
+              //         CircleAvatar(
+              //             backgroundImage: CachedNetworkImageProvider(
+              //               'https://images.pexels.com/photos/8514763/pexels-photo-8514763.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+              //             ),
+              //             radius: 25),
+              //         ListTile(
+              //           dense: true,
+              //           contentPadding: EdgeInsets.zero,
+              //           title: Text(
+              //             'Sophia',
+              //             softWrap: true,
+              //             style: TextStyle(fontSize: 20),
+              //           ),
+              //           subtitle: Text(
+              //             '@sophia',
+              //             style: TextStyle(color: Colors.grey, fontSize: 16),
+              //           ),
+              //           trailing: IconButton(
+              //               splashRadius: 15,
+              //               onPressed: () {},
+              //               icon: Icon(Icons.expand_more)),
+              //         ),
+              //         Row(
+              //           mainAxisSize: MainAxisSize.min,
+              //           mainAxisAlignment: MainAxisAlignment.start,
+              //           crossAxisAlignment: CrossAxisAlignment.start,
+              //           children: [
+              //             RichText(
+              //               text: TextSpan(
+              //                   style:
+              //                       TextStyle(color: Colors.grey, fontSize: 16),
+              //                   children: [
+              //                     TextSpan(
+              //                         text: '100 ',
+              //                         style: TextStyle(
+              //                             color: Theme.of(context).brightness ==
+              //                                     Brightness.dark
+              //                                 ? Colors.white
+              //                                 : Colors.black,
+              //                             fontWeight: FontWeight.bold)),
+              //                     TextSpan(text: 'Following ')
+              //                   ]),
+              //             ),
+              //             SizedBox(width: 10),
+              //             RichText(
+              //               text: TextSpan(
+              //                   style:
+              //                       TextStyle(color: Colors.grey, fontSize: 16),
+              //                   children: [
+              //                     TextSpan(
+              //                         text: '1k ',
+              //                         style: TextStyle(
+              //                             color: Theme.of(context).brightness ==
+              //                                     Brightness.dark
+              //                                 ? Colors.white
+              //                                 : Colors.black,
+              //                             fontWeight: FontWeight.bold)),
+              //                     TextSpan(text: 'Followers ')
+              //                   ]),
+              //             ),
+              //           ],
+              //         ),
+              //         Divider(),
+              //       ],
+              //     );
+              //   },
+              // ),
+
+              SizedBox(height: 20),
               ListTile(
                 leading: Icon(Icons.person),
                 contentPadding: EdgeInsets.zero,

@@ -17,20 +17,20 @@ class UserProfile {
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'handle': handle,
+      'twitterHandle': handle,
       'followers': followers,
       'following': following,
-      'avatarUrl': avatarUrl,
+      'profilePicure': avatarUrl,
     };
   }
 
   factory UserProfile.fromMap(Map<String, dynamic> map) {
     return UserProfile(
       name: map['name'],
-      handle: map['handle'],
+      handle: map['twitterHandle'],
       followers: map['followers'],
       following: map['following'],
-      avatarUrl: map['avatarUrl'],
+      avatarUrl: map['profilePicure'],
     );
   }
 }
@@ -44,10 +44,10 @@ class GetUserProfileData {
   Future<UserProfile> getprofileData() async {
     final data = await profileData.collection('users').doc(profileId).get();
 
+    // print(data.data() as Map<String, dynamic>);
+    // print(
+    // '${UserProfile.fromMap(data.data() as Map<String, dynamic>)} from futureprofile');
     return UserProfile.fromMap(data.data() as Map<String, dynamic>);
-
-    // print(data.data());
-    // print(data.data());
   }
 
   List<UserProfile> twitterUsers = [];

@@ -31,7 +31,7 @@ class CreateUser {
         'twitterHandle': twitterHandle,
         'followers': 0,
         'following': 0,
-        'profilePicure': url,
+        'profilePicture': url,
       });
       // print(url);
     } catch (e) {
