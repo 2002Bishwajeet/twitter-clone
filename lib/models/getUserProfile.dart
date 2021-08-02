@@ -30,8 +30,8 @@ class UserProfile {
       handle: map['twitterHandle'],
       followers: map['followers'],
       following: map['following'],
-      // TODO: To fix the map name of avatarUrl
-      avatarUrl: map['profilePicure'],
+    
+      avatarUrl: map['profilePicture'],
     );
   }
 }
