@@ -34,12 +34,13 @@ class DrawerWidget extends ConsumerWidget {
                   data: (data) => Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           CircleAvatar(
                               backgroundImage: CachedNetworkImageProvider(
                                 _profileData.data!.value.avatarUrl,
                               ),
-                              radius: 25),
+                              radius: 30),
                           ListTile(
                             dense: true,
                             contentPadding: EdgeInsets.zero,
@@ -49,7 +50,7 @@ class DrawerWidget extends ConsumerWidget {
                               style: TextStyle(fontSize: 20),
                             ),
                             subtitle: Text(
-                              _profileData.data!.value.handle,
+                              '@${_profileData.data!.value.handle}',
                               style:
                                   TextStyle(color: Colors.grey, fontSize: 16),
                             ),
@@ -79,7 +80,7 @@ class DrawerWidget extends ConsumerWidget {
                                                   ? Colors.white
                                                   : Colors.black,
                                               fontWeight: FontWeight.bold)),
-                                      TextSpan(text: 'Following ')
+                                      TextSpan(text: ' Following ')
                                     ]),
                               ),
                               SizedBox(width: 10),
@@ -99,7 +100,7 @@ class DrawerWidget extends ConsumerWidget {
                                                   ? Colors.white
                                                   : Colors.black,
                                               fontWeight: FontWeight.bold)),
-                                      TextSpan(text: 'Followers ')
+                                      TextSpan(text: ' Followers ')
                                     ]),
                               ),
                             ],
@@ -334,7 +335,7 @@ class DrawerWidget extends ConsumerWidget {
               //   },
               // ),
 
-              SizedBox(height: 20),
+              // SizedBox(height: 20),
               ListTile(
                 leading: Icon(Icons.person),
                 contentPadding: EdgeInsets.zero,
