@@ -1,11 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:twitter_clone/models/getUserProfile.dart';
-
 import 'package:twitter_clone/providers/auth_provider.dart';
 import 'package:twitter_clone/providers/user_provider.dart';
-
 import '../themes.dart';
 
 class DrawerWidget extends ConsumerWidget {
