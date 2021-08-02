@@ -6,6 +6,7 @@ class TwitterTheme {
   static ThemeData lightTheme(BuildContext context) => ThemeData(
         brightness: Brightness.light,
         backgroundColor: Colors.white,
+        scaffoldBackgroundColor: Colors.white,
         fontFamily: GoogleFonts.ubuntu().fontFamily,
         textTheme: TextTheme(
           headline6: TextStyle(color: blackTColor, fontWeight: FontWeight.bold),
@@ -20,6 +21,10 @@ class TwitterTheme {
   static ThemeData darkTheme(BuildContext context) => ThemeData(
         brightness: Brightness.dark,
         backgroundColor: Colors.black87,
+        scaffoldBackgroundColor: Colors.black87,
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: blueTColor,
+        ),
         fontFamily: GoogleFonts.ubuntu().fontFamily,
         textTheme: TextTheme(
           headline6:

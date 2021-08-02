@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:twitter_clone/pages/CreateProfilepage.dart';
 import 'package:twitter_clone/Screens/errorScreen.dart';
+import 'package:twitter_clone/pages/createTweetPage.dart';
 import 'package:twitter_clone/pages/homepage.dart';
 import 'package:twitter_clone/Screens/loadingScreen.dart';
 import 'package:twitter_clone/pages/login_signup_screen.dart';
@@ -40,6 +41,7 @@ class MainApp extends ConsumerWidget {
         HomePage.routename: (ctx) => HomePage(),
         LoginScreen.routename: (ctx) => LoginScreen(),
         CreateProfilePage.routename: (ctx) => CreateProfilePage(),
+        CreateTweetPage.routename: (ctx) => CreateTweetPage(),
       },
     );
   }

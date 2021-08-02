@@ -5,6 +5,7 @@ import 'package:twitter_clone/Screens/NotificationScreen.dart';
 import 'package:twitter_clone/Screens/SearchScreen.dart';
 import 'package:twitter_clone/Screens/homeScreen.dart';
 import 'package:twitter_clone/Widgets/DrawerWidget.dart';
+import 'package:twitter_clone/pages/createTweetPage.dart';
 import 'package:twitter_clone/themes.dart';
 
 class HomePage extends StatefulWidget {
@@ -38,6 +39,16 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Theme.of(context).backgroundColor,
       drawer: DrawerWidget(),
       body: _screens[_currIndex],
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed(CreateTweetPage.routename);
+        },
+        tooltip: 'Create a Tweet',
+        child: Icon(
+          LineIcons.alternateFeather,
+          color: Colors.white,
+        ),
+      ),
       bottomNavigationBar: ClipRRect(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25), topRight: Radius.circular(25)),
