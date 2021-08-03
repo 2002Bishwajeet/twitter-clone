@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:twitter_clone/Widgets/Story_widget.dart';
 import 'package:twitter_clone/Widgets/TweetWidget.dart';
+import 'package:twitter_clone/models/tweetModel.dart';
+import 'package:twitter_clone/providers/tweet_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -9,7 +13,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-      
       physics: BouncingScrollPhysics(),
       slivers: [
         SliverAppBar(
@@ -35,10 +38,29 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        SliverList(
-            delegate: SliverChildBuilderDelegate(
-                (context, index) => TweetWidget(),
-                childCount: 7))
+        Consumer(builder: (context, watch, _) {
+          final tweetStream = watch(tweetStreamProvider);
+          return tweetStream.when(
+              data: (data) {
+                if (data.docs.isEmpty)
+                  return SliverToBoxAdapter(
+                    child: Center(child: Text('It\'s Empty')),
+                  );
+
+                return SliverList(
+                    delegate: SliverChildListDelegate(
+                        data.docs.map((DocumentSnapshot document) {
+                  return TweetWidget(
+                    data: TweetModel.fromMap(
+                        document.data() as Map<String, dynamic>),
+                  );
+                }).toList()));
+              },
+              loading: () =>
+                  SliverToBoxAdapter(child: CircularProgressIndicator()),
+              error: (e, _trace) =>
+                  SliverToBoxAdapter(child: Text(e.toString())));
+        }),
       ],
     );
   }

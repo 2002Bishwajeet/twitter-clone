@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 
+import 'package:twitter_clone/models/tweetModel.dart';
+
 class TweetWidget extends StatelessWidget {
-  const TweetWidget({Key? key}) : super(key: key);
+  final TweetModel data;
+  const TweetWidget({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,28 +17,29 @@ class TweetWidget extends StatelessWidget {
         children: [
           ListTile(
             leading: CircleAvatar(
-                radius: 26,
-                backgroundImage: NetworkImage(
-                    'https://images.pexels.com/photos/2811087/pexels-photo-2811087.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')),
+                radius: 26, backgroundImage: NetworkImage(data.imgUrl)),
             title: RichText(
               text: TextSpan(
-                  text: 'Sonia Joseph ',
+                  text: '${data.name} ',
                   style: Theme.of(context).textTheme.headline6,
                   children: [
                     TextSpan(
-                        text: '@soniajoseph_ ',
+                        text: '@${data.handle} ',
                         style: Theme.of(context).textTheme.subtitle1,
                         children: [
-                          TextSpan(text: ' 23h'),
+                          // TODO: Create Time Logic
+                          TextSpan(text: '${data.createdAt.second}'),
                         ]),
                   ]),
             ),
             subtitle: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
-                    'Flutter is Google\'s SDK for crafting beautiful, fast user experiences for mobile, web, and desktop from a single codebase.',
+                    data.tweet,
                     style: TextStyle(
                       fontSize: 16,
                       color: Theme.of(context).brightness == Brightness.dark
@@ -47,11 +54,14 @@ class TweetWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       IconNumberedWidget(
-                          ico: LineIcons.alternateComment, number: 3),
+                          ico: LineIcons.alternateComment,
+                          number: data.comments),
                       Spacer(),
-                      IconNumberedWidget(ico: LineIcons.retweet, number: 5),
+                      IconNumberedWidget(
+                          ico: LineIcons.retweet, number: data.retweets),
                       Spacer(),
-                      IconNumberedWidget(ico: LineIcons.heart, number: 7),
+                      IconNumberedWidget(
+                          ico: LineIcons.heart, number: data.likes),
                       Spacer(),
                     ])
               ],

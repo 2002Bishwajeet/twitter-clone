@@ -14,7 +14,8 @@ class CreateTweetPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final _tweet = watch(tweetProvider);
+    final _tweet = watch(tweetTextProvider);
+    final _postTweet = watch(tweetClassProvider);
     return Scaffold(
         body: SafeArea(
       child: Container(
@@ -37,9 +38,16 @@ class CreateTweetPage extends ConsumerWidget {
                         color: TwitterTheme.blueTColor),
                   ),
                   MaterialButton(
-                    onPressed: _tweet.state.isEmpty ? null : () {},
+                    onPressed: _tweet.state.isEmpty
+                        ? null
+                        : () async {
+                            await _postTweet.postTweet(_tweet.state);
+                            Navigator.of(context).pop();
+                            
+                          },
                     child: Text('Tweet'),
                     color: TwitterTheme.blueTColor,
+                    disabledColor: TwitterTheme.blueTColor.withOpacity(0.5),
                     textColor: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25)),
@@ -64,14 +72,14 @@ class CreateTweetPage extends ConsumerWidget {
                       autofocus: true,
                       enableSuggestions: true,
                       maxLines: 20,
-                      onChanged: (val) {
-                        _tweet.state = val;
-                      },
                       decoration: InputDecoration(
                         hintText: 'What\'s happening? ',
                         alignLabelWithHint: true,
                         border: InputBorder.none,
                       ),
+                      onChanged: (val) {
+                        _tweet.state = val;
+                      },
                     ),
                   );
                 },
