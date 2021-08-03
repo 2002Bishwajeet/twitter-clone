@@ -2,24 +2,19 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:twitter_clone/providers/tweet_provider.dart';
 import 'package:twitter_clone/providers/user_provider.dart';
 import 'package:twitter_clone/themes.dart';
 
-class CreateTweetPage extends StatefulWidget {
+class CreateTweetPage extends ConsumerWidget {
   static const routename = '/CreateTweet';
   CreateTweetPage({Key? key}) : super(key: key);
 
-  @override
-  _CreateTweetPageState createState() => _CreateTweetPageState();
-}
-
-class _CreateTweetPageState extends State<CreateTweetPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
-  final _tweet = TextEditingController();
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final _tweet = watch(tweetProvider);
     return Scaffold(
         body: SafeArea(
       child: Container(
@@ -42,8 +37,7 @@ class _CreateTweetPageState extends State<CreateTweetPage> {
                         color: TwitterTheme.blueTColor),
                   ),
                   MaterialButton(
-                    // TODO: use StateProvider instead of setstate
-                    onPressed: _tweet.text.isEmpty ? null : () {},
+                    onPressed: _tweet.state.isEmpty ? null : () {},
                     child: Text('Tweet'),
                     color: TwitterTheme.blueTColor,
                     textColor: Colors.white,
@@ -66,10 +60,12 @@ class _CreateTweetPageState extends State<CreateTweetPage> {
                         error: (e, trace) =>
                             CircleAvatar(child: Text(e.toString()))),
                     title: TextFormField(
-                      controller: _tweet,
+                      autocorrect: true,
+                      autofocus: true,
+                      enableSuggestions: true,
+                      maxLines: 20,
                       onChanged: (val) {
-                        // TODO: Avoid Calling the empty setState
-                        setState(() {});
+                        _tweet.state = val;
                       },
                       decoration: InputDecoration(
                         hintText: 'What\'s happening? ',
