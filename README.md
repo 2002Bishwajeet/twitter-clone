@@ -30,6 +30,8 @@ c) **RiverPod**  - Used as State Management
 
 - Users can logout
 
+- Dark Mode
+
 ## Features to be added later in the future
 
 [ ] Users can like and comment on tweets
