@@ -1,6 +1,7 @@
 # Twitter Clone
 
 This Repo Contains a functional Twitter Clone made using Flutter & Dart
+
 [![Build Status](https://img.shields.io/badge/twitter--clone-1.0.0-blue)](https://github.com/2002Bishwajeet/Twitter-Clone)
 
 ## Technology Used
@@ -10,7 +11,9 @@ This Repo Contains a functional Twitter Clone made using Flutter & Dart
  <!-- <a href="https://git-scm.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> -->
 
 a) **Flutter** - Google's UI toolkit for building beautiful, natively compiled applications for mobile, web, desktop, and embedded devices from a single codebase.
+
 b) **Firebase** - Used for Backend Operations
+
 c) **RiverPod**  - Used as State Management
 
 ## What's Working
