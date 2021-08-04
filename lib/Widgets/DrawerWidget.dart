@@ -340,37 +340,56 @@ class DrawerWidget extends ConsumerWidget {
                 leading: Icon(Icons.person),
                 contentPadding: EdgeInsets.zero,
                 title: Text('Profile'),
-                onTap: () {},
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Sab Chaiye tumhe')));
+                },
               ),
               ListTile(
                 leading: Icon(Icons.notes),
                 contentPadding: EdgeInsets.zero,
                 title: Text('Lists'),
-                onTap: () {},
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Ruko zara Sabr rkho')));
+                },
               ),
               ListTile(
                 leading: Icon(Icons.topic_sharp),
                 contentPadding: EdgeInsets.zero,
                 title: Text('Topics'),
-                onTap: () {},
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('esa hai khud bana lo')));
+                },
               ),
               ListTile(
                 leading: Icon(Icons.bookmark_outline_rounded),
                 contentPadding: EdgeInsets.zero,
                 title: Text('Bookmarks'),
-                onTap: () {},
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Tum nhi sudhroge ')));
+                },
               ),
               ListTile(
                 leading: Icon(Icons.lightbulb_outline_rounded),
                 contentPadding: EdgeInsets.zero,
                 title: Text('Moments'),
-                onTap: () {},
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Chor de bhai/bhen ')));
+                },
               ),
               ListTile(
                 leading: Icon(Icons.star_outline_rounded),
                 contentPadding: EdgeInsets.zero,
                 title: Text('Monetisation'),
-                onTap: () {},
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content:
+                          Text('Saale kabhi twitter mein bhi khola nhi hoga')));
+                },
               ),
               ListTile(
                 contentPadding: EdgeInsets.zero,
@@ -397,13 +416,19 @@ class DrawerWidget extends ConsumerWidget {
               ListTile(
                   contentPadding: EdgeInsets.zero,
                   leading: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('Mujhe khud nhi pata yeh kya hai')));
+                      },
                       icon: Icon(
                         Icons.lightbulb,
                         color: TwitterTheme.blueTColor,
                       )),
                   trailing: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(SnackBar(content: Text('I give up')));
+                      },
                       icon: Icon(
                         Icons.qr_code,
                         color: TwitterTheme.blueTColor,
