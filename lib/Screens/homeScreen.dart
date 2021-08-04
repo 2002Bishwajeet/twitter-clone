@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
               itemBuilder: (context, index) => StoryWidget(index: index),
               physics: BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
+              itemCount: 1,
               padding: const EdgeInsets.only(left: 8),
             ),
           ),

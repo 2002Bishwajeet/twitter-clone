@@ -90,8 +90,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                               child: CircleAvatar(
                                 radius: 52,
                                 backgroundImage: _image == null
-                                    ? NetworkImage(
-                                            'https://images.pexels.com/photos/2811087/pexels-photo-2811087.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')
+                                    ? AssetImage('assets/images/profile.png')
                                         as ImageProvider<Object>
                                     : FileImage(File(_image!.path)),
                               )),
