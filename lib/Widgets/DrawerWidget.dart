@@ -405,7 +405,7 @@ class DrawerWidget extends ConsumerWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
                   'Help Centre',
                   style: Theme.of(context).textTheme.subtitle1,
