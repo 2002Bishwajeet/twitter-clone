@@ -60,6 +60,5 @@ c) **RiverPod**  - Used as State Management
 </p>
 
 ## Demo
-https://user-images.githubusercontent.com/62933155/128216040-e7cbf9d0-1dbd-4d84-8243-1ae5214c3f36.mp4
 
-
+<https://user-images.githubusercontent.com/62933155/128216040-e7cbf9d0-1dbd-4d84-8243-1ae5214c3f36.mp4>
