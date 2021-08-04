@@ -80,27 +80,12 @@ class _LoginScreenState extends State<LoginScreen> {
               });
             } else {
               loading();
-              await _auth
-                  .signUpWithEmailAndPassword(
-                      _email.text, _password.text, context)
-                  .onError((error, stackTrace) async {
-                loading();
-                return await showDialog(
-                    context: context,
-                    builder: (ctx) => AlertDialog(
-                            title: Text('Error Occured'),
-                            content: Text(error.toString()),
-                            actions: [
-                              TextButton(
-                                  onPressed: () {
-                                    Navigator.of(ctx).pop();
-                                  },
-                                  child: Text("OK"))
-                            ]));
-              });
+              await _auth.signUpWithEmailAndPassword(
+                  _email.text, _password.text, context);
 
               _auth.authStateChange.listen((event) async {
                 if (event == null) {
+                  loading();
                   return;
                 } else {
                   Navigator.of(context)

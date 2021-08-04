@@ -31,7 +31,9 @@ class StoryWidget extends StatelessWidget {
                   child: ref.when(
                     data: (data) => CircleAvatar(
                       radius: 27,
-                      backgroundImage: NetworkImage(data.avatarUrl),
+                      backgroundImage: data.avatarUrl.contains('profile.png')
+                          ? AssetImage(data.avatarUrl)
+                          : NetworkImage(data.avatarUrl) as ImageProvider,
                     ),
                     loading: () => CircleAvatar(
                       radius: 27,
