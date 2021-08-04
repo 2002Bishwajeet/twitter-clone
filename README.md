@@ -1,4 +1,4 @@
-# Twitter Clone
+# Twitter Clone ![twitter](https://www.vectorlogo.zone/logos/twitter/twitter-icon.svg)
 
 This Repo Contains a functional Twitter Clone made using Flutter & Dart
 
