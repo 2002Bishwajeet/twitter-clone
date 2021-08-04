@@ -178,7 +178,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                                     .then((url) => _createUser.addUser(
                                         _name.text, _handle.text, url))
                                 : _createUser.addUser(_name.text, _handle.text,
-                                    'assets/images/maleavatar.png');
+                                    'assets/images/profile.png');
 
                             await Navigator.of(context)
                                 .pushReplacementNamed(HomePage.routename);

@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Theme.of(context).backgroundColor,
       drawer: DrawerWidget(),
       body: _screens[_currIndex],
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: _currIndex == 0 ? FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushNamed(CreateTweetPage.routename);
         },
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
           LineIcons.alternateFeather,
           color: Colors.white,
         ),
-      ),
+      ):null,
       bottomNavigationBar: ClipRRect(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25), topRight: Radius.circular(25)),

@@ -17,7 +17,11 @@ class TweetWidget extends StatelessWidget {
         children: [
           ListTile(
             leading: CircleAvatar(
-                radius: 26, backgroundImage: NetworkImage(data.imgUrl)),
+              radius: 26,
+              backgroundImage: data.imgUrl.contains('assets')
+                  ? AssetImage(data.imgUrl)
+                  : NetworkImage(data.imgUrl) as ImageProvider,
+            ),
             title: RichText(
               text: TextSpan(
                   text: '${data.name} ',
