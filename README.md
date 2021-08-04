@@ -29,10 +29,14 @@ c) **RiverPod**  - Used as State Management
 
 ## Features to be added later in the future
 
-[ ] Users can like and comment on tweets.
+[ ] Users can like and comment on tweets
+
 [ ] Users can view their profile
+
 [ ] Users can view other users profiles
+
 [ ] Users can view and upload twitter fleets
+
 [ ] Users can chat with other users
 
 ## Screenshots
