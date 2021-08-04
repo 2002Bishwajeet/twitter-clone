@@ -58,3 +58,8 @@ c) **RiverPod**  - Used as State Management
 <img src = "Screenshots\create.png" height = "700"/>
 <img src = "Screenshots\drawer.png" height = "700"/>
 </p>
+
+## Demo
+https://user-images.githubusercontent.com/62933155/128216040-e7cbf9d0-1dbd-4d84-8243-1ae5214c3f36.mp4
+
+
