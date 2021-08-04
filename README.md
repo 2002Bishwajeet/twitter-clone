@@ -37,9 +37,6 @@ c) **RiverPod**  - Used as State Management
 
 ## Screenshots
 
-<img src = "Screenshots\welcome.png"/>
-<img src = "Screenshots\login.png">
-<img src = "Screenshots\signup.png">
-<img src = "Screenshots\home.png">
-<img src = "Screenshots\create.png">
-<img src = "Screenshots\drawer.png">
+<img src = "Screenshots\welcome.png"/><img src = "Screenshots\login.png">
+<img src = "Screenshots\signup.png"><img src = "Screenshots\home.png">
+<img src = "Screenshots\create.png"><img src = "Screenshots\drawer.png">
