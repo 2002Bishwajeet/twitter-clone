@@ -36,7 +36,15 @@ c) **RiverPod**  - Used as State Management
 [ ] Users can chat with other users
 
 ## Screenshots
-
-<img src = "Screenshots\welcome.png"/><img src = "Screenshots\login.png">
-<img src = "Screenshots\signup.png"><img src = "Screenshots\home.png">
-<img src = "Screenshots\create.png"><img src = "Screenshots\drawer.png">
+<p float = "left">
+<img src = "Screenshots\welcome.png" height = "800"/>
+<img src = "Screenshots\login.png" height = "800"/>
+</p>
+<p float = "right">
+<img src = "Screenshots\signup.png" height = "800" "/>
+<img src = "Screenshots\home.png" height = "800"/>
+</p>
+<p float = "left">
+<img src = "Screenshots\create.png" height = "800"/>
+<img src = "Screenshots\drawer.png" height = "800"/>
+</p>
