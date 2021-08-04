@@ -1,16 +1,45 @@
 # Twitter Clone
 
-This Repo Contains a functional Twitter Clone made using Flutter & Dart [Under Construction]
+This Repo Contains a functional Twitter Clone made using Flutter & Dart
+[![Build Status](https://img.shields.io/badge/twitter--clone-1.0.0-blue)](https://github.com/2002Bishwajeet/Twitter-Clone)
 
-## Getting Started
+## Technology Used
 
-This project is a starting point for a Flutter application.
+<a href="https://dart.dev" target="_blank"> <img src="https://www.vectorlogo.zone/logos/dartlang/dartlang-icon.svg" alt="dart" width="40" height="40"/> </a> <a href="https://firebase.google.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> </a> <a href="https://flutter.dev" target="_blank"> <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" alt="flutter" width="40" height="40"/></a> <a href = "https://riverpod.dev/" tarrget = "_blank"> <img src = "https://riverpod.dev/img/logo.svg" height = "40" width = "40"/> </a>
 
-A few resources to get you started if this is your first Flutter project:
+ <!-- <a href="https://git-scm.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> -->
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+a) **Flutter** - Google's UI toolkit for building beautiful, natively compiled applications for mobile, web, desktop, and embedded devices from a single codebase.
+b) **Firebase** - Used for Backend Operations
+c) **RiverPod**  - Used as State Management
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## What's Working
+
+- SignIn and SignUp through FireBase Authentication
+
+- Users can see their details in the drawer
+
+- Users can post tweets
+
+- Users can see other tweets
+
+- Users are automatically logged in (Thanks to FireBase)
+
+- Users can logout
+
+## Features to be added later in the future
+
+[ ] Users can like and comment on tweets
+[ ] Users can view their profile
+[ ] Users can view other users profiles
+[ ] Users can view and upload twitter fleets
+[ ] Users can chat with other users
+
+## Screenshots
+
+<img src = "Screenshots\welcome.png"/>
+<img src = "Screenshots\login.png">
+<img src = "Screenshots\signup.png">
+<img src = "Screenshots\home.png">
+<img src = "Screenshots\create.png">
+<img src = "Screenshots\drawer.png">
