@@ -30,24 +30,11 @@ class _LoginScreenState extends State<LoginScreen> {
   final _email = TextEditingController();
   final _password = TextEditingController();
   bool _isLoading = false;
-  void updateEmail(BuildContext context, String email) {}
-
-  @override
-  void dispose() {
-    _email.dispose();
-    _password.dispose();
-    super.dispose();
-  }
 
   void loading() {
-    if (_isLoading == true)
-      setState(() {
-        _isLoading = false;
-      });
-    else
-      setState(() {
-        _isLoading = true;
-      });
+    setState(() {
+      _isLoading = !_isLoading;
+    });
   }
 
   void _switchType() {
@@ -75,24 +62,46 @@ class _LoginScreenState extends State<LoginScreen> {
             if (!_formKey.currentState!.validate()) {
               return;
             }
+            print(_email.text);
+            print(_password.text);
             if (type == Status.login) {
-              await _auth.signInWithEmailAndPassword(
-                  _email.text, _password.text);
               loading();
+              await _auth.signInWithEmailAndPassword(
+                  _email.text, _password.text, context);
+
               _auth.authStateChange.listen((event) {
                 if (event == null) {
-                  print(event);
+                  loading();
+                  return;
                 } else {
                   Navigator.of(context)
                       .pushReplacementNamed(HomePage.routename);
                 }
               });
             } else {
-              await _auth.signUpWithEmailAndPassword(_email.text, _email.text);
               loading();
-              _auth.authStateChange.listen((event) {
+              await _auth
+                  .signUpWithEmailAndPassword(
+                      _email.text, _password.text, context)
+                  .onError((error, stackTrace) async {
+                loading();
+                return await showDialog(
+                    context: context,
+                    builder: (ctx) => AlertDialog(
+                            title: Text('Error Occured'),
+                            content: Text(error.toString()),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.of(ctx).pop();
+                                  },
+                                  child: Text("OK"))
+                            ]));
+              });
+
+              _auth.authStateChange.listen((event) async {
                 if (event == null) {
-                  print(event);
+                  return;
                 } else {
                   Navigator.of(context)
                       .pushReplacementNamed(CreateProfilePage.routename);
@@ -228,7 +237,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           Center(
                             child: InkWell(
                               enableFeedback: true,
-                              onTap: () {},
+                              onTap: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text("Coming Soon")));
+                              },
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: Text(
