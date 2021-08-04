@@ -29,7 +29,7 @@ c) **RiverPod**  - Used as State Management
 
 ## Features to be added later in the future
 
-[ ] Users can like and comment on tweets
+[ ] Users can like and comment on tweets.
 [ ] Users can view their profile
 [ ] Users can view other users profiles
 [ ] Users can view and upload twitter fleets
@@ -37,15 +37,15 @@ c) **RiverPod**  - Used as State Management
 
 ## Screenshots
 
-<p float = "center">
+<p float = "left">
 <img src = "Screenshots\welcome.png" height = "700"/>
 <img src = "Screenshots\login.png" height = "700"/>
 </p>
-<p float = "center">
+<p float = "left">
 <img src = "Screenshots\signup.png" height = "700" "/>
 <img src = "Screenshots\home.png" height = "700"/>
 </p>
-<p float = "center">
+<p float = "left">
 <img src = "Screenshots\create.png" height = "700"/>
 <img src = "Screenshots\drawer.png" height = "700"/>
 </p>
