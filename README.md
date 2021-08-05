@@ -4,7 +4,7 @@ This Repo Contains a functional Twitter Clone made using Flutter & Dart
 
 [![Build Status](https://img.shields.io/badge/twitter--clone-1.0.0-blue)](https://github.com/2002Bishwajeet/Twitter-Clone)
 
-## Technology Used
+## TechStack Used
 
 <a href="https://dart.dev" target="_blank"> <img src="https://www.vectorlogo.zone/logos/dartlang/dartlang-icon.svg" alt="dart" width="40" height="40"/> </a> <a href="https://firebase.google.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> </a> <a href="https://flutter.dev" target="_blank"> <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" alt="flutter" width="40" height="40"/></a> <a href = "https://riverpod.dev/" tarrget = "_blank"> <img src = "https://riverpod.dev/img/logo.svg" height = "40" width = "40"/> </a>
 
