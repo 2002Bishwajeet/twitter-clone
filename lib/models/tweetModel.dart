@@ -143,8 +143,8 @@ class Tweet {
 
   Future<Stream<QuerySnapshot>> getTweet() async {
     Stream<QuerySnapshot> tweets = store
-        .collection('tweets')
-        .orderBy('createdAt', descending: true)
+        .collection("tweets")
+        .orderBy("createdAt", descending: true)
         .snapshots();
     // final tweetsref = tweets.withConverter<TweetModel>(
     //     fromFirestore: (snapshot, _) => TweetModel.fromMap(snapshot.data()!),

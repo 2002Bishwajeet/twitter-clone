@@ -6,6 +6,7 @@
 */
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:twitter_clone/models/tweetModel.dart';
 
@@ -37,8 +38,9 @@ class TweetWidget extends StatelessWidget {
                         text: '@${data.handle} ',
                         style: Theme.of(context).textTheme.subtitle1,
                         children: [
-                          // TODO: Create Time Logic
-                          TextSpan(text: '${data.createdAt.second}'),
+                         
+                          TextSpan(
+                              text: DateFormat.Hms().format(data.createdAt)),
                         ]),
                   ]),
             ),
