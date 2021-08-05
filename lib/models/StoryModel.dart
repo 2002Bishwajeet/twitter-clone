@@ -1,3 +1,10 @@
+/*
+  Developed by Bishwajeet Parhi
+  GitHub: https://github.com/2002Bishwajeet
+  Twitter: https://twitter.com/biswa_20p
+  Feel free to improve the  twitter_clone Repo.
+*/
+
 import 'dart:convert';
 
 class Stories {
@@ -28,5 +35,6 @@ class Stories {
 
   String toJson() => json.encode(toMap());
 
-  factory Stories.fromJson(String source) => Stories.fromMap(json.decode(source));
+  factory Stories.fromJson(String source) =>
+      Stories.fromMap(json.decode(source));
 }

@@ -1,3 +1,10 @@
+/*
+  Developed by Bishwajeet Parhi
+  GitHub: https://github.com/2002Bishwajeet
+  Twitter: https://twitter.com/biswa_20p
+  Feel free to improve the  twitter_clone Repo.
+*/
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:twitter_clone/models/getUserProfile.dart';

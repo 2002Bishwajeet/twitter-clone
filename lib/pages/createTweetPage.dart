@@ -1,3 +1,10 @@
+/*
+  Developed by Bishwajeet Parhi
+  GitHub: https://github.com/2002Bishwajeet
+  Twitter: https://twitter.com/biswa_20p
+  Feel free to improve the  twitter_clone Repo.
+*/
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +50,6 @@ class CreateTweetPage extends ConsumerWidget {
                         : () async {
                             await _postTweet.postTweet(_tweet.state);
                             Navigator.of(context).pop();
-                            
                           },
                     child: Text('Tweet'),
                     color: TwitterTheme.blueTColor,

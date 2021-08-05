@@ -1,5 +1,11 @@
-import 'dart:io';
+/*
+  Developed by Bishwajeet Parhi
+  GitHub: https://github.com/2002Bishwajeet
+  Twitter: https://twitter.com/biswa_20p
+  Feel free to improve the  twitter_clone Repo.
+*/
 
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_auth/firebase_auth.dart';

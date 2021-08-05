@@ -1,3 +1,10 @@
+/*
+  Developed by Bishwajeet Parhi
+  GitHub: https://github.com/2002Bishwajeet
+  Twitter: https://twitter.com/biswa_20p
+  Feel free to improve the  twitter_clone Repo.
+*/
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserProfile {
@@ -30,7 +37,6 @@ class UserProfile {
       handle: map['twitterHandle'],
       followers: map['followers'],
       following: map['following'],
-    
       avatarUrl: map['profilePicture'],
     );
   }
