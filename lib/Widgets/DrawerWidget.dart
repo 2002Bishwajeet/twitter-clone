@@ -391,7 +391,7 @@ class DrawerWidget extends ConsumerWidget {
               ListTile(
                 leading: Icon(Icons.star_outline_rounded),
                 contentPadding: EdgeInsets.zero,
-                title: Text('Monetisation'),
+                title: Text('Monetization'),
                 onTap: () {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content:
