@@ -251,6 +251,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.14.0+3"
+  flutter_shimmer:
+    dependency: "direct main"
+    description:
+      name: flutter_shimmer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter

@@ -8,6 +8,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_shimmer/flutter_shimmer.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:twitter_clone/Widgets/Story_widget.dart';
 import 'package:twitter_clone/Widgets/TweetWidget.dart';
@@ -63,8 +64,18 @@ class HomeScreen extends StatelessWidget {
                   );
                 }).toList()));
               },
-              loading: () =>
-                  SliverToBoxAdapter(child: CircularProgressIndicator()),
+              loading: () => SliverToBoxAdapter(
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.9,
+                      child: ListView.builder(
+                          itemBuilder: (context, index) => ListTileShimmer(
+                                isDarkMode: Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? true
+                                    : false,
+                              )),
+                    ),
+                  ),
               error: (e, _trace) =>
                   SliverToBoxAdapter(child: Text(e.toString())));
         }),

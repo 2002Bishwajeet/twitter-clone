@@ -153,6 +153,4 @@ class Tweet {
     // tweetsList = await tweetsref.get().then((value) => value.docs);
     return tweets;
   }
-
-  // List<TweetModel> tweetsList = [];
 }

@@ -5,6 +5,7 @@
   Feel free to improve the  twitter_clone Repo.
 */
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:line_icons/line_icons.dart';
@@ -27,7 +28,7 @@ class TweetWidget extends StatelessWidget {
               radius: 26,
               backgroundImage: data.imgUrl.contains('assets')
                   ? AssetImage(data.imgUrl)
-                  : NetworkImage(data.imgUrl) as ImageProvider,
+                  : CachedNetworkImageProvider(data.imgUrl) as ImageProvider,
             ),
             title: RichText(
               text: TextSpan(
@@ -38,7 +39,6 @@ class TweetWidget extends StatelessWidget {
                         text: '@${data.handle} ',
                         style: Theme.of(context).textTheme.subtitle1,
                         children: [
-                         
                           TextSpan(
                               text: DateFormat.Hms().format(data.createdAt)),
                         ]),

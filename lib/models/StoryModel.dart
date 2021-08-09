@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 /*
   Developed by Bishwajeet Parhi
   GitHub: https://github.com/2002Bishwajeet
@@ -5,13 +7,11 @@
   Feel free to improve the  twitter_clone Repo.
 */
 
-import 'dart:convert';
-
-class Stories {
+class StoryModel {
   final String name;
   final String id;
   final String imgUrl;
-  Stories({
+  StoryModel({
     required this.name,
     required this.id,
     required this.imgUrl,
@@ -25,8 +25,8 @@ class Stories {
     };
   }
 
-  factory Stories.fromMap(Map<String, dynamic> map) {
-    return Stories(
+  factory StoryModel.fromMap(Map<String, dynamic> map) {
+    return StoryModel(
       name: map['name'],
       id: map['id'],
       imgUrl: map['imgUrl'],
@@ -35,6 +35,48 @@ class Stories {
 
   String toJson() => json.encode(toMap());
 
-  factory Stories.fromJson(String source) =>
-      Stories.fromMap(json.decode(source));
+  factory StoryModel.fromJson(String source) =>
+      StoryModel.fromMap(json.decode(source));
 }
+
+class StoryItemModel {
+  final String handle;
+  final String profilePicture;
+  final String id;
+  final String picture;
+
+  StoryItemModel({
+    required this.handle,
+    required this.profilePicture,
+    required this.id,
+    required this.picture,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'handle': handle,
+      'profilePicture': profilePicture,
+      'id': id,
+      'picture': picture,
+    };
+  }
+
+  factory StoryItemModel.fromMap(Map<String, dynamic> map) {
+    return StoryItemModel(
+      handle: map['handle'],
+      profilePicture: map['profilePicture'],
+      id: map['id'],
+      picture: map['picture'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory StoryItemModel.fromJson(String source) =>
+      StoryItemModel.fromMap(json.decode(source));
+}
+
+class Stories {
+  
+}
+ 
