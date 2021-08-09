@@ -1,11 +1,14 @@
-import 'dart:convert';
-
 /*
   Developed by Bishwajeet Parhi
   GitHub: https://github.com/2002Bishwajeet
   Twitter: https://twitter.com/biswa_20p
   Feel free to improve the  twitter_clone Repo.
 */
+
+import 'dart:convert';
+import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class StoryModel {
   final String name;
@@ -77,6 +80,28 @@ class StoryItemModel {
 }
 
 class Stories {
-  
+  firebase_storage.FirebaseStorage storage =
+      firebase_storage.FirebaseStorage.instance;
+
+  CollectionReference story = FirebaseFirestore.instance.collection('stories');
+
+  Future<void> createStory(String filePath, String imgName, String name) async {
+    File file = File(filePath);
+
+    try {
+      await storage.ref('Stories/$imgName').putFile(file);
+    } on firebase_storage.FirebaseException catch (e) {
+      print(e);
+    }
+
+    try {
+      story.add({
+        'name': name,
+        'img': await storage.ref('Stories/$imgName').getDownloadURL(),
+        'dateAdded': DateTime.now().millisecondsSinceEpoch,
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
 }
- 

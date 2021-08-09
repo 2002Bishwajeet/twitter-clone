@@ -16,7 +16,9 @@ import 'package:twitter_clone/models/tweetModel.dart';
 import 'package:twitter_clone/providers/tweet_provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+
+   
 
   @override
   Widget build(BuildContext context) {
