@@ -14,27 +14,32 @@ import 'package:twitter_clone/models/getUserProfile.dart';
 
 class StoryModel {
   final String name;
-  final String id;
+
   final String imgUrl;
+  final String profileUrl;
+  final String handle;
   StoryModel({
     required this.name,
-    required this.id,
     required this.imgUrl,
+    required this.profileUrl,
+    required this.handle,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'id': id,
       'imgUrl': imgUrl,
+      'profileUrl': profileUrl,
+      'handle': handle,
     };
   }
 
   factory StoryModel.fromMap(Map<String, dynamic> map) {
     return StoryModel(
       name: map['name'],
-      id: map['id'],
       imgUrl: map['imgUrl'],
+      profileUrl: map['profileUrl'],
+      handle: map['handle'],
     );
   }
 
@@ -42,43 +47,6 @@ class StoryModel {
 
   factory StoryModel.fromJson(String source) =>
       StoryModel.fromMap(json.decode(source));
-}
-
-class StoryItemModel {
-  final String handle;
-  final String profilePicture;
-  final String id;
-  final String picture;
-
-  StoryItemModel({
-    required this.handle,
-    required this.profilePicture,
-    required this.id,
-    required this.picture,
-  });
-
-  Map<String, dynamic> toMap() {
-    return {
-      'handle': handle,
-      'profilePicture': profilePicture,
-      'id': id,
-      'picture': picture,
-    };
-  }
-
-  factory StoryItemModel.fromMap(Map<String, dynamic> map) {
-    return StoryItemModel(
-      handle: map['handle'],
-      profilePicture: map['profilePicture'],
-      id: map['id'],
-      picture: map['picture'],
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory StoryItemModel.fromJson(String source) =>
-      StoryItemModel.fromMap(json.decode(source));
 }
 
 class Stories {
@@ -99,20 +67,36 @@ class Stories {
     } on firebase_storage.FirebaseException catch (e) {
       print(e);
     }
-     UserProfile? profiledata;
+    UserProfile? profiledata;
 
     try {
       await users.doc(id).get().then((data) async {
-         profiledata = UserProfile.fromMap(data.data() as Map<String, dynamic>);
+        profiledata = UserProfile.fromMap(data.data() as Map<String, dynamic>);
       });
 
       story.add({
         'name': profiledata!.name,
-        'img': await storage.ref('Stories/$imgName').getDownloadURL(),
+        'imgUrl': await storage.ref('Stories/$imgName').getDownloadURL(),
         'dateAdded': DateTime.now().millisecondsSinceEpoch,
       });
     } catch (e) {
       print(e);
     }
+  }
+
+// TODO - Make this future Fucntion return AsyncValue . We will use the list in main widget
+  Future<List<StoryModel>> getStories() async {
+    List<StoryModel> stories = [];
+    try {
+      await story.get().then((data) async {
+        data.docs.forEach((doc) async {
+          stories.add(StoryModel.fromMap(doc.data() as Map<String, dynamic>));
+        });
+      });
+    } catch (e) {
+      print(e);
+    }
+    print(stories);
+    return stories;
   }
 }

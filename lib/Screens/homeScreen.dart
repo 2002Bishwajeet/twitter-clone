@@ -12,13 +12,15 @@ import 'package:flutter_shimmer/flutter_shimmer.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:twitter_clone/Widgets/Story_widget.dart';
 import 'package:twitter_clone/Widgets/TweetWidget.dart';
+import 'package:twitter_clone/models/StoryModel.dart';
+import 'package:twitter_clone/models/getUserProfile.dart';
 import 'package:twitter_clone/models/tweetModel.dart';
+import 'package:twitter_clone/providers/story_provider.dart';
 import 'package:twitter_clone/providers/tweet_provider.dart';
+import 'package:twitter_clone/providers/user_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
-
-   
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +41,30 @@ class HomeScreen extends StatelessWidget {
         SliverToBoxAdapter(
           child: Container(
             height: MediaQuery.of(context).size.height * 0.1,
-            child: ListView.builder(
-              itemBuilder: (context, index) => StoryWidget(index: index),
-              physics: BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              itemCount: 1,
-              padding: const EdgeInsets.only(left: 8),
+            child: Consumer(
+              builder: (context, watch, _) {
+                final AsyncValue<UserProfile> ref =
+                    watch(getUserProfileDataProvider);
+              
+                
+                return ListView(
+                  physics: BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.only(left: 8),
+                  children: [
+                    ref.when(
+                        data: (data) => StoryWidget(
+                              userData: data,
+                              index: 0,
+                            ),
+                        loading: () => CircularProgressIndicator(),
+                        error: (e, _) => CircleAvatar(
+                              child: Text(e.toString()),
+                            )),
+                          
+                  ],
+                );
+              },
             ),
           ),
         ),
