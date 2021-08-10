@@ -34,17 +34,19 @@ class StoryWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    return InkWell(
-      onTap: () async {
-        final StateController<XFile?> provider = context.read(imageUrlProvider);
-        provider.state = await pickImage(_picker);
-        if (provider.state == null) {
-          return;
-        } else
-          Navigator.of(context).pushNamed(CreateStory.routename);
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(30),
+        onTap: () async {
+          final StateController<XFile?> provider =
+              context.read(imageUrlProvider);
+          provider.state = await pickImage(_picker);
+          if (provider.state == null) {
+            return;
+          } else
+            Navigator.of(context).pushNamed(CreateStory.routename);
+        },
         child: Stack(
           children: [
             // TODO: Delete this Approach and make a better one when you implement the feature.

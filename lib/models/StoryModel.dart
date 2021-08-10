@@ -8,7 +8,9 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:twitter_clone/models/getUserProfile.dart';
 
 class StoryModel {
   final String name;
@@ -83,9 +85,13 @@ class Stories {
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
 
+  final String id = FirebaseAuth.instance.currentUser!.uid;
+
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+
   CollectionReference story = FirebaseFirestore.instance.collection('stories');
 
-  Future<void> createStory(String filePath, String imgName, String name) async {
+  Future<void> createStory(String filePath, String imgName) async {
     File file = File(filePath);
 
     try {
@@ -93,10 +99,15 @@ class Stories {
     } on firebase_storage.FirebaseException catch (e) {
       print(e);
     }
+     UserProfile? profiledata;
 
     try {
+      await users.doc(id).get().then((data) async {
+         profiledata = UserProfile.fromMap(data.data() as Map<String, dynamic>);
+      });
+
       story.add({
-        'name': name,
+        'name': profiledata!.name,
         'img': await storage.ref('Stories/$imgName').getDownloadURL(),
         'dateAdded': DateTime.now().millisecondsSinceEpoch,
       });
