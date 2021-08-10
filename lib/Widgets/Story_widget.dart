@@ -25,21 +25,20 @@ class StoryWidget extends ConsumerWidget {
 
   final ImagePicker _picker = ImagePicker();
 
-  Future<String?> pickImage(ImagePicker picker) async {
-    // TODO: Find why camera is not working
+  Future<XFile?> pickImage(ImagePicker picker) async {
     final XFile? image = await picker.pickImage(source: ImageSource.camera);
     print(image);
 
-    return image!.path;
+    return image;
   }
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    String? url = watch(imageUrlProvider);
     return InkWell(
       onTap: () async {
-        url = await pickImage(_picker);
-        if (url == null) {
+        final StateController<XFile?> provider = context.read(imageUrlProvider);
+        provider.state = await pickImage(_picker);
+        if (provider.state == null) {
           return;
         } else
           Navigator.of(context).pushNamed(CreateStory.routename);

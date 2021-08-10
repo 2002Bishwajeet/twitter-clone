@@ -3,5 +3,10 @@
     <!-- Flutter needs it to communicate with the running application
          to allow setting breakpoints, to provide hot reload, etc.
     -->
+    <queries>
+      <intent>
+           <action android:name="android.media.action.IMAGE_CAPTURE" />
+      </intent>
+</queries>
     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

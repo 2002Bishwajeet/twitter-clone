@@ -1,6 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.twitter_clone">
     <uses-permission android:name="android.permission.INTERNET" />
+    <queries>
+      <intent>
+           <action android:name="android.media.action.IMAGE_CAPTURE" />
+      </intent>
+</queries>
    <application
         android:label="twitter_clone"
         android:icon="@mipmap/launcher_icon">
@@ -39,4 +44,5 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    
 </manifest>
