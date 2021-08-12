@@ -45,8 +45,8 @@ class HomeScreen extends StatelessWidget {
               builder: (context, watch, _) {
                 final AsyncValue<UserProfile> ref =
                     watch(getUserProfileDataProvider);
-              
-                
+                final storiesdata = watch(storyDataProvider);
+
                 return ListView(
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
@@ -61,7 +61,17 @@ class HomeScreen extends StatelessWidget {
                         error: (e, _) => CircleAvatar(
                               child: Text(e.toString()),
                             )),
-                          
+                    storiesdata.when(
+                        data: (data) {
+                          return Row(
+                              children: data
+                                  .map((e) => StoryWidget(
+                                        storyData: e,
+                                      ))
+                                  .toList());
+                        },
+                        loading: () => CircularProgressIndicator(),
+                        error: (e, _) => CircularProgressIndicator())
                   ],
                 );
               },

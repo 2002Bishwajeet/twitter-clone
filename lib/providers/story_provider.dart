@@ -9,3 +9,6 @@ final storyProvider = Provider<Stories>((ref) {
 final imageUrlProvider = StateProvider<XFile?>((ref) {
   return;
 });
+final storyDataProvider = FutureProvider<List<StoryModel>>((ref) async {
+  return Stories().getStories();
+});

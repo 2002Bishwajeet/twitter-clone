@@ -1,3 +1,4 @@
+
 /*
   Developed by Bishwajeet Parhi
   GitHub: https://github.com/2002Bishwajeet
@@ -14,14 +15,15 @@ import 'package:twitter_clone/models/getUserProfile.dart';
 
 class StoryModel {
   final String name;
-
   final String imgUrl;
   final String profileUrl;
+  final DateTime dateAdded;
   final String handle;
   StoryModel({
     required this.name,
     required this.imgUrl,
     required this.profileUrl,
+    required this.dateAdded,
     required this.handle,
   });
 
@@ -30,6 +32,7 @@ class StoryModel {
       'name': name,
       'imgUrl': imgUrl,
       'profileUrl': profileUrl,
+      'dateAdded': dateAdded.millisecondsSinceEpoch,
       'handle': handle,
     };
   }
@@ -39,6 +42,7 @@ class StoryModel {
       name: map['name'],
       imgUrl: map['imgUrl'],
       profileUrl: map['profileUrl'],
+      dateAdded: DateTime.fromMillisecondsSinceEpoch(map['dateAdded']),
       handle: map['handle'],
     );
   }
@@ -78,6 +82,8 @@ class Stories {
         'name': profiledata!.name,
         'imgUrl': await storage.ref('Stories/$imgName').getDownloadURL(),
         'dateAdded': DateTime.now().millisecondsSinceEpoch,
+        'profileUrl': profiledata!.avatarUrl,
+        'handle': profiledata!.handle,
       });
     } catch (e) {
       print(e);
