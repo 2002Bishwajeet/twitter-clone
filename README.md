@@ -32,6 +32,8 @@ c) **RiverPod**  - Used as State Management
 
 - Dark Mode
 
+- Users can post and view other People Stories (currently you can post picture only)
+  
 ## Features to be added later in the future
 
 [ ] Users can like and comment on tweets
