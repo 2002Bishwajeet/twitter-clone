@@ -12,6 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:twitter_clone/models/StoryModel.dart';
 import 'package:twitter_clone/models/getUserProfile.dart';
 import 'package:twitter_clone/pages/createStoryPage.dart';
+import 'package:twitter_clone/pages/viewStorypage.dart';
 import 'package:twitter_clone/providers/story_provider.dart';
 import 'package:twitter_clone/themes.dart';
 
@@ -52,7 +53,11 @@ class StoryWidget extends StatelessWidget {
                 } else
                   Navigator.of(context).pushNamed(CreateStory.routename);
               }
-            : () {},
+            : () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        ViewStory(story: storyData as StoryModel)));
+              },
         child: Stack(
           children: [
             storyData != null

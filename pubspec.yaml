@@ -26,6 +26,7 @@ dependencies:
   intl: ^0.17.0
   line_icons: ^2.0.1
   simple_animations: ^3.1.1
+  story: ^0.5.1
 
 dev_dependencies:
   flutter_test:

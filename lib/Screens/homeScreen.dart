@@ -12,7 +12,6 @@ import 'package:flutter_shimmer/flutter_shimmer.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:twitter_clone/Widgets/Story_widget.dart';
 import 'package:twitter_clone/Widgets/TweetWidget.dart';
-import 'package:twitter_clone/models/StoryModel.dart';
 import 'package:twitter_clone/models/getUserProfile.dart';
 import 'package:twitter_clone/models/tweetModel.dart';
 import 'package:twitter_clone/providers/story_provider.dart';
