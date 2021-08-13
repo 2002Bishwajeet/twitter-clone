@@ -3,7 +3,7 @@ description: A Twitter Clone made using Flutter & Firebase. Riverpod used as a
   state Management
 publish_to: "none"
 
-version: 1.0.0+1
+version: 1.0.1+1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
