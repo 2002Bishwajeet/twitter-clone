@@ -2,7 +2,7 @@
 
 This Repo Contains a functional Twitter Clone made using Flutter & Dart
 
-[![Build Status](https://img.shields.io/badge/twitter--clone-1.0.0-blue)](https://github.com/2002Bishwajeet/Twitter-Clone)
+[![Build Status](https://img.shields.io/badge/twitter--clone-1.0.1-blue)](https://github.com/2002Bishwajeet/Twitter-Clone)
 
 ## TechStack Used
 
