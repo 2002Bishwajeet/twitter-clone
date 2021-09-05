@@ -1,18 +1,25 @@
+/*
+  Developed by Bishwajeet Parhi
+  GitHub: https://github.com/2002Bishwajeet
+  Twitter: https://twitter.com/biswa_20p
+  Feel free to improve the  twitter_clone Repo.
+*/
+
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:twitter_clone/pages/login_signup_screen.dart';
 
 import '../themes.dart';
 
-class MobileViewWidget extends StatelessWidget {
-  const MobileViewWidget({
+class WebViewWidget extends StatelessWidget {
+  const WebViewWidget({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 32),
+      margin: const EdgeInsets.symmetric(horizontal: 256),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,6 +70,7 @@ class MobileViewWidget extends StatelessWidget {
                   color: Colors.white,
                   textColor: TwitterTheme.blueTColor,
                   textTheme: ButtonTextTheme.primary,
+                  padding: const EdgeInsets.symmetric(vertical: 24),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
                 ),
@@ -79,6 +87,7 @@ class MobileViewWidget extends StatelessWidget {
                     'Log in',
                     style: TextStyle(fontWeight: FontWeight.w600),
                   ),
+                  padding: const EdgeInsets.symmetric(vertical: 24),
                   textColor: Colors.white,
                   textTheme: ButtonTextTheme.primary,
                   shape: RoundedRectangleBorder(

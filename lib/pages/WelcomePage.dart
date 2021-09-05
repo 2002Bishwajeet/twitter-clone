@@ -6,8 +6,8 @@
 */
 
 import 'package:flutter/material.dart';
-import 'package:twitter_clone/Widgets/MobileWelcomeScreen.dart';
-import 'package:twitter_clone/Widgets/WebWelcomeScreen.dart';
+import 'package:twitter_clone/Mobile/MobileWelcomeScreen.dart';
+import 'package:twitter_clone/Web/WebWelcomeScreen.dart';
 import 'package:twitter_clone/themes.dart';
 
 class WelcomePage extends StatelessWidget {
