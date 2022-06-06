@@ -114,197 +114,194 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Form webLogin(BuildContext context, Future<void> _onPressedFunction()) {
     return Form(
-            key: _formKey,
-            child: Center(
-              child: Container(
-                margin: const EdgeInsets.only(top: 32),
-                constraints: BoxConstraints(
-                    maxWidth: MediaQuery.of(context).size.width * 0.3),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    CircleAvatar(
-                        backgroundColor: TwitterTheme.blueTColor,
-                        radius: 60,
-                        child: Icon(
-                          LineIcons.twitter,
-                          color: Colors.white,
-                          size: 80,
-                        )),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 24, vertical: 4),
-                      child: Text(
-                        type == Status.signup
-                            ? 'Sign Up to Twitter'
-                            : 'Log in to Twitter',
-                        style: Theme.of(context).textTheme.headline4,
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 24, vertical: 16),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: TextFormField(
-                        controller: _email,
-                        autocorrect: true,
-                        enableSuggestions: true,
-                        keyboardType: TextInputType.emailAddress,
-                        onSaved: (value) {},
-                        decoration: InputDecoration(
-                          hintText: 'Email address',
-                          hintStyle: TextStyle(color: Colors.black54),
-                          icon: Icon(Icons.email_outlined,
-                              color: TwitterTheme.blueTColor, size: 24),
-                          alignLabelWithHint: true,
-                          border: InputBorder.none,
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty || !value.contains('@')) {
-                            return 'Invalid email!';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 24, vertical: 8),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: TextFormField(
-                        controller: _password,
-                        obscureText: true,
-                        validator: (value) {
-                          if (value!.isEmpty || value.length < 8) {
-                            return 'Password is too short!';
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          hintText: 'Password',
-                          hintStyle: TextStyle(color: Colors.black54),
-                          icon: Icon(CupertinoIcons.lock_circle,
-                              color: TwitterTheme.blueTColor, size: 24),
-                          alignLabelWithHint: true,
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                    if (type == Status.signup)
-                      AnimatedContainer(
-                        duration: Duration(milliseconds: 600),
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 8),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                        ),
-                        child: TextFormField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            hintText: 'Confirm password',
-                            hintStyle: TextStyle(color: Colors.black54),
-                            icon: Icon(CupertinoIcons.lock_circle,
-                                color: TwitterTheme.blueTColor, size: 24),
-                            alignLabelWithHint: true,
-                            border: InputBorder.none,
-                          ),
-                          validator: type == Status.signup
-                              ? (value) {
-                                  if (value != _password.text) {
-                                    return 'Passwords do not match!';
-                                  }
-                                  return null;
-                                }
-                              : null,
-                        ),
-                      ),
-                    if (type == Status.login)
-                      Center(
-                        child: InkWell(
-                          enableFeedback: true,
-                          onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text("Coming Soon")));
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Text(
-                              'Forgot password?',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .subtitle1!
-                                  .copyWith(color: Colors.white),
-                            ),
-                          ),
-                        ),
-                      ),
-                    Center(
-                      child: Container(
-                        padding: const EdgeInsets.only(top: 24.0),
-                        margin: const EdgeInsets.symmetric(horizontal: 16),
-                        width: double.infinity,
-                        child: _isLoading
-                            ? Center(child: CircularProgressIndicator())
-                            : MaterialButton(
-                                onPressed: _onPressedFunction,
-                                child: Text(
-                                  type == Status.login ? 'Log in' : 'Sign up',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.w600),
-                                ),
-                                textColor: TwitterTheme.blueTColor,
-                                textTheme: ButtonTextTheme.primary,
-                                minWidth: 100,
-                                color: Colors.white,
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 24, horizontal: 18),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(25),
-                                  side: BorderSide(color: Colors.white),
-                                ),
-                              ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 24.0),
-                      child: Center(
-                        child: RichText(
-                          text: TextSpan(
-                            text: type == Status.login
-                                ? 'New to Twitter? '
-                                : 'Already to Twitter? ',
-                            style: TextStyle(color: Colors.white),
-                            children: [
-                              TextSpan(
-                                  text: type == Status.login
-                                      ? 'Sign up now'
-                                      : 'Log in',
-                                  style: TextStyle(color: Colors.white),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      _switchType();
-                                    })
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+      key: _formKey,
+      child: Center(
+        child: Container(
+          margin: const EdgeInsets.only(top: 32),
+          constraints:
+              BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.3),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              CircleAvatar(
+                  backgroundColor: TwitterTheme.blueTColor,
+                  radius: 60,
+                  child: Icon(
+                    LineIcons.twitter,
+                    color: Colors.white,
+                    size: 80,
+                  )),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+                child: Text(
+                  type == Status.signup
+                      ? 'Sign Up to Twitter'
+                      : 'Log in to Twitter',
+                  style: Theme.of(context).textTheme.headline4,
                 ),
               ),
-            ),
-          );
+              Container(
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: TextFormField(
+                  controller: _email,
+                  autocorrect: true,
+                  enableSuggestions: true,
+                  keyboardType: TextInputType.emailAddress,
+                  onSaved: (value) {},
+                  decoration: InputDecoration(
+                    hintText: 'Email address',
+                    hintStyle: TextStyle(color: Colors.black54),
+                    icon: Icon(Icons.email_outlined,
+                        color: TwitterTheme.blueTColor, size: 24),
+                    alignLabelWithHint: true,
+                    border: InputBorder.none,
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty || !value.contains('@')) {
+                      return 'Invalid email!';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: TextFormField(
+                  controller: _password,
+                  obscureText: true,
+                  validator: (value) {
+                    if (value!.isEmpty || value.length < 8) {
+                      return 'Password is too short!';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+                    hintStyle: TextStyle(color: Colors.black54),
+                    icon: Icon(CupertinoIcons.lock_circle,
+                        color: TwitterTheme.blueTColor, size: 24),
+                    alignLabelWithHint: true,
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+              if (type == Status.signup)
+                AnimatedContainer(
+                  duration: Duration(milliseconds: 600),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  child: TextFormField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      hintText: 'Confirm password',
+                      hintStyle: TextStyle(color: Colors.black54),
+                      icon: Icon(CupertinoIcons.lock_circle,
+                          color: TwitterTheme.blueTColor, size: 24),
+                      alignLabelWithHint: true,
+                      border: InputBorder.none,
+                    ),
+                    validator: type == Status.signup
+                        ? (value) {
+                            if (value != _password.text) {
+                              return 'Passwords do not match!';
+                            }
+                            return null;
+                          }
+                        : null,
+                  ),
+                ),
+              if (type == Status.login)
+                Center(
+                  child: InkWell(
+                    enableFeedback: true,
+                    onTap: () {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text("Coming Soon")));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Text(
+                        'Forgot password?',
+                        style: Theme.of(context)
+                            .textTheme
+                            .subtitle1!
+                            .copyWith(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              Center(
+                child: Container(
+                  padding: const EdgeInsets.only(top: 24.0),
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
+                  width: double.infinity,
+                  child: _isLoading
+                      ? Center(child: CircularProgressIndicator())
+                      : MaterialButton(
+                          onPressed: _onPressedFunction,
+                          child: Text(
+                            type == Status.login ? 'Log in' : 'Sign up',
+                            style: TextStyle(fontWeight: FontWeight.w600),
+                          ),
+                          textColor: TwitterTheme.blueTColor,
+                          textTheme: ButtonTextTheme.primary,
+                          minWidth: 100,
+                          color: Colors.white,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 24, horizontal: 18),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                            side: BorderSide(color: Colors.white),
+                          ),
+                        ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24.0),
+                child: Center(
+                  child: RichText(
+                    text: TextSpan(
+                      text: type == Status.login
+                          ? 'New to Twitter? '
+                          : 'Already to Twitter? ',
+                      style: TextStyle(color: Colors.white),
+                      children: [
+                        TextSpan(
+                            text:
+                                type == Status.login ? 'Sign up now' : 'Log in',
+                            style: TextStyle(color: Colors.white),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                _switchType();
+                              })
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Form mobileLogin(BuildContext context, Future<void> _onPressedFunction()) {
